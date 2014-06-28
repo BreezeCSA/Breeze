@@ -1,0 +1,1264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension-point id="splashExtension" name="Splash Extensions" schema="schema/splashExtension.exsd"/>
+
+
+   <extension point="org.eclipse.team.core.fileTypes" id="repo-ftype">
+      <?gmfgen generated="true"?>
+      <fileTypes type="text" extension="breeze_diagram"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser" id="resource-factory">
+      <?gmfgen generated="true"?>
+      <parser
+         type="breeze_diagram"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser> 
+   </extension>
+
+   <extension point="org.eclipse.ui.editors" id="gmf-editor">
+      <?gmfgen generated="true"?>
+      <editor
+         id="BreezeModel.diagram.part.BreezeDiagramEditorID"
+         name="%editorName"
+         icon="icons/obj16/breezeDiagramFileIcon.png"
+         extensions="breeze_diagram, production"
+         default="true"
+         class="BreezeModel.diagram.part.BreezeDiagramEditor"
+         matchingStrategy="BreezeModel.diagram.part.BreezeMatchingStrategy"
+         contributorClass="BreezeModel.diagram.part.BreezeDiagramActionBarContributor">
+      </editor>
+   </extension>
+   
+   <extension point="org.eclipse.ui.contexts" id="ui-context">
+      <?gmfgen generated="true"?>
+      <context
+         description="%context.description"
+         id="BreezeModel.diagram.ui.diagramContext"
+         name="%context.name"
+         parentId="org.eclipse.gmf.runtime.diagram.ui.diagramContext">
+      </context>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards" id="creation-wizard">
+      <?gmfgen generated="true"?>
+  	  <category 
+			id="Breeze.diagram.ui.wizard.newWizardParent" 
+        	name="Breeze" > 
+      </category>
+  	  <wizard
+           category="Breeze.diagram.ui.wizard.newWizardParent"
+           class="BreezeModel.diagram.part.BreezeCreationWizard"
+           hasPages="true"
+           icon="icons/obj16/breezeDiagramFile.gif"
+           id="BreezeModel.diagram.part.BreezeCreationWizardID"
+           name="%newWizardName"
+           project="true">
+  	  	 <description>%newWizardDesc</description>  
+      </wizard>
+   </extension>
+
+      <extension point="org.eclipse.ui.actionSets" id="init-diagram-action">
+      <?gmfgen generated="true"?>
+      <actionSet
+            label="%initDiagramActionLabel"
+            visible="true"
+            id="org.sjtu.radlab.breeze.diagram.InitDiagram">
+         <action
+               label="%initDiagramActionLabel"
+               class="BreezeModel.diagram.part.BreezeInitDiagramFileAction"
+               menubarPath="file/additions"
+               id="org.sjtu.radlab.breeze.diagram.InitDiagramAction">
+         </action>
+      </actionSet>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.action.globalActionHandlerProviders" id="global-actions">
+      <?gmfgen generated="true"?>
+      <GlobalActionHandlerProvider
+         class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
+         id="BreezePresentation">
+         <Priority name="Lowest"/>
+         <ViewId id="BreezeModel.diagram.part.BreezeDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="delete"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart">
+               <GlobalActionId actionId="save"/>
+            </ElementType>
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="save">
+               </GlobalActionId>
+            </ElementType>        
+         </ViewId>
+      </GlobalActionHandlerProvider>
+      <GlobalActionHandlerProvider
+            class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
+            id="BreezeRender">
+         <Priority name="Lowest"/>
+         <ViewId id="BreezeModel.diagram.part.BreezeDiagramEditorID">
+            <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+               <GlobalActionId actionId="cut"/>
+               <GlobalActionId actionId="copy"/>
+               <GlobalActionId actionId="paste"/>
+            </ElementType>
+         </ViewId>
+      </GlobalActionHandlerProvider>
+   </extension>
+
+
+   <extension id="validationDecoratorProvider" name="ValidationDecorations" point="org.eclipse.gmf.runtime.diagram.ui.decoratorProviders">
+      <?gmfgen generated="true"?>
+      <decoratorProvider class="BreezeModel.diagram.providers.BreezeValidationDecoratorProvider">
+         <Priority name="Medium"/>
+         <object class="org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart(org.eclipse.gmf.runtime.diagram.ui)" id="PRIMARY_VIEW"/>
+         <context decoratorTargets="PRIMARY_VIEW"/>
+      </decoratorProvider>
+   </extension>
+
+   <extension point="org.eclipse.core.runtime.preferences" id="prefs">
+      <?gmfgen generated="true"?>
+      <initializer class="BreezeModel.diagram.preferences.DiagramPreferenceInitializer"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.preferencePages" id="prefpages">
+      <?gmfgen generated="true"?>
+      <page
+            id="org.sjtu.radlab.breeze.diagram.general"
+            name="%prefpage.org.sjtu.radlab.breeze.diagram.general"
+            class="BreezeModel.diagram.preferences.DiagramGeneralPreferencePage">
+      </page>
+      <page
+            id="org.sjtu.radlab.breeze.diagram.appearance"
+            name="%prefpage.org.sjtu.radlab.breeze.diagram.appearance"
+            category="org.sjtu.radlab.breeze.diagram.general"
+            class="BreezeModel.diagram.preferences.DiagramAppearancePreferencePage">
+      </page>
+      <page
+            id="org.sjtu.radlab.breeze.diagram.connections"
+            name="%prefpage.org.sjtu.radlab.breeze.diagram.connections"
+            category="org.sjtu.radlab.breeze.diagram.general"
+            class="BreezeModel.diagram.preferences.DiagramConnectionsPreferencePage">
+      </page>
+      <page
+            id="org.sjtu.radlab.breeze.diagram.printing"
+            name="%prefpage.org.sjtu.radlab.breeze.diagram.printing"
+            category="org.sjtu.radlab.breeze.diagram.general"
+            class="BreezeModel.diagram.preferences.DiagramPrintingPreferencePage">
+      </page>
+      <page
+            id="org.sjtu.radlab.breeze.diagram.rulersAndGrid"
+            name="%prefpage.org.sjtu.radlab.breeze.diagram.rulersAndGrid"
+            category="org.sjtu.radlab.breeze.diagram.general"
+            class="BreezeModel.diagram.preferences.DiagramRulersAndGridPreferencePage">
+      </page>
+      <page
+            id="com.goku.breeze.ui.preference.SafetyPreference"
+            name="Safety"
+            class="com.goku.breeze.ui.preference.SafetyPreferencePage">
+      </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyContributor" id="prop-contrib">
+      <?gmfgen generated="true"?>
+      <propertyContributor
+            contributorId="org.sjtu.radlab.breeze.diagram"
+            labelProvider="BreezeModel.diagram.sheet.BreezeSheetLabelProvider">
+         <propertyCategory category="domain"/>
+         <propertyCategory category="visual"/>
+         <propertyCategory category="extra"/>
+      </propertyContributor>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertyTabs" id="proptabs">
+      <?gmfgen generated="true"?>   
+      <propertyTabs contributorId="org.sjtu.radlab.breeze.diagram">
+         <propertyTab
+             category="visual"
+             id="property.tab.AppearancePropertySection"
+             label="%tab.appearance"/>
+          <propertyTab
+             category="visual"
+             id="property.tab.DiagramPropertySection"
+             label="%tab.diagram"/>
+          <propertyTab
+             category="domain"
+             id="property.tab.domain"
+             label="%tab.domain"/>
+             <propertyTab
+                afterTab="property.tab.domain"
+                category="domain"
+                id="property.tab.domain.attributes"
+                label="%tab.attributes" />
+      </propertyTabs>
+   </extension>
+
+   <extension point="org.eclipse.ui.views.properties.tabbed.propertySections" id="propsections">
+      <?gmfgen generated="true"?>   
+      <propertySections contributorId="org.sjtu.radlab.breeze.diagram">
+         <propertySection id="property.section.ConnectorAppearancePropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ConnectionEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ConnectionAppearancePropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>
+         <propertySection id="property.section.ShapeColorAndFontPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.ShapeEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.ShapeColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection> 
+         <propertySection id="property.section.DiagramColorsAndFontsPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.appearance.DiagramColorsAndFontsPropertySection" 
+            tab="property.tab.AppearancePropertySection">
+         </propertySection>     
+         <propertySection id="property.section.RulerGridPropertySection" 
+            filter="org.eclipse.gmf.runtime.diagram.ui.properties.filters.DiagramEditPartPropertySectionFilter" 
+            class="org.eclipse.gmf.runtime.diagram.ui.properties.sections.grid.RulerGridPropertySection" 
+            tab="property.tab.DiagramPropertySection">
+         </propertySection>     
+         <propertySection
+            id="property.section.domain" 
+            tab="property.tab.domain"
+            class="BreezeModel.diagram.sheet.BreezePropertySection">
+            <input type="org.eclipse.gmf.runtime.notation.View"/>
+            <input type="org.eclipse.gef.EditPart"/>
+         </propertySection>
+         <propertySection
+               class="BreezeModel.diagram.sheet.AttributePropertiesSection"
+               filter="BreezeModel.diagram.sheet.AttributePropertiesSection$Filter"
+               id="property.section.domain.attributes"
+               tab="property.tab.domain.attributes">
+         </propertySection>
+      </propertySections>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">
+      <?gmfgen generated="true"?>
+      <viewProvider class="BreezeModel.diagram.providers.BreezeViewProvider">
+         <Priority name="Lowest"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Breeze"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,2002,2003,3005,3002,3003,3010,3009,3011,3012,3013"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4002"/>
+      </viewProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders" id="ep-provider">
+      <?gmfgen generated="true"?>
+      <editpartProvider class="BreezeModel.diagram.providers.BreezeEditPartProvider">
+         <Priority name="Lowest"/>
+         <object class="org.eclipse.gmf.runtime.notation.Diagram" id="generated-diagram">
+            <method name="getType()" value="Breeze"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
+            <method name="getType()" value="2001,2002,2003,3005,3002,3003,3010,3009,3011,3012,3013"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
+            <method name="getType()" value="4002"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
+            <method name="getType()" value="5002,5003,5014,5005,5004,5010,5009,5013,5011,5012"/>
+         </object>
+         <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
+            <method name="getType()" value="7001,7002,7003,7004,7007,7005,7006"/>
+         </object>
+         <context views="generated-diagram,generated-nodes,generated-links,generated-labels,generated-compartments"/>
+      </editpartProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders" id="modelassist-provider">
+      <?gmfgen generated="true"?>
+      <modelingAssistantProvider class="BreezeModel.diagram.providers.BreezeModelingAssistantProvider">
+         <Priority name="Lowest"/>
+         <object class="BreezeModel.diagram.edit.parts.BreezeEditPart" id="Breeze_1000"/>
+         <object class="BreezeModel.diagram.edit.parts.ArchEditPart" id="Arch_2001"/>
+         <object class="BreezeModel.diagram.edit.parts.StyleEditPart" id="Style_2002"/>
+         <object class="BreezeModel.diagram.edit.parts.GokuEditPart" id="Goku_2003"/>
+         <object class="BreezeModel.diagram.edit.parts.ComponentEditPart" id="Component_3005"/>
+         <object class="BreezeModel.diagram.edit.parts.PortEditPart" id="Port_3002"/>
+         <object class="BreezeModel.diagram.edit.parts.ConnectorEditPart" id="Connector_3003"/>
+         <object class="BreezeModel.diagram.edit.parts.TemplateEditPart" id="Template_3010"/>
+         <object class="BreezeModel.diagram.edit.parts.NodeTemplateEditPart" id="NodeTemplate_3009"/>
+         <object class="BreezeModel.diagram.edit.parts.ProductionEditPart" id="Production_3011"/>
+         <object class="BreezeModel.diagram.edit.parts.Arch2EditPart" id="Arch_3012"/>
+         <object class="BreezeModel.diagram.edit.parts.Arch3EditPart" id="Arch_3013"/>
+         <context elements="Breeze_1000,Arch_2001,Style_2002,Goku_2003,Component_3005,Port_3002,Connector_3003,Template_3010,NodeTemplate_3009,Production_3011,Arch_3012,Arch_3013"/>
+      </modelingAssistantProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders" id="icon-provider">
+      <?gmfgen generated="true"?>
+      <IconProvider class="BreezeModel.diagram.providers.BreezeIconProvider">
+         <Priority name="Low"/>
+      </IconProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders" id="parser-provider">
+      <?gmfgen generated="true"?>
+      <ParserProvider class="BreezeModel.diagram.providers.BreezeParserProvider">
+         <Priority name="Lowest"/>
+      </ParserProvider>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+      <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <metamodelType
+               id="org.sjtu.radlab.breeze.diagram.Breeze_1000"
+               name="%metatype.name.Breeze_1000"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Breeze"
+               edithelper="BreezeModel.diagram.edit.helpers.BreezeEditHelper">
+            <param name="semanticHint" value="1000"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <metamodelType
+               id="org.sjtu.radlab.breeze.diagram.Arch_2001"
+               name="%metatype.name.Arch_2001"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Arch"
+               edithelper="BreezeModel.diagram.edit.helpers.ArchEditHelper">
+            <param name="semanticHint" value="2001"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <metamodelType
+               id="org.sjtu.radlab.breeze.diagram.Style_2002"
+               name="%metatype.name.Style_2002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Style"
+               edithelper="BreezeModel.diagram.edit.helpers.StyleEditHelper">
+            <param name="semanticHint" value="2002"/>
+         </metamodelType>
+      </metamodel>
+
+       <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <metamodelType
+               id="org.sjtu.radlab.breeze.diagram.Production_2004"
+               name="%metatype.name.Production_2004"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Style"
+               edithelper="BreezeModel.diagram.edit.helpers.StyleEditHelper">
+            <param name="semanticHint" value="2004"/>
+         </metamodelType>
+      </metamodel>
+
+      <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <metamodelType
+               id="org.sjtu.radlab.breeze.diagram.Goku_2003"
+               name="%metatype.name.Goku_2003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="goku"
+               edithelper="BreezeModel.diagram.edit.helpers.GokuEditHelper">
+            <param name="semanticHint" value="2003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <metamodelType
+               id="org.sjtu.radlab.breeze.diagram.Component_3005"
+               name="%metatype.name.Component_3005"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Component"
+               edithelper="BreezeModel.diagram.edit.helpers.ComponentEditHelper">
+            <param name="semanticHint" value="3005"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <metamodelType
+               id="org.sjtu.radlab.breeze.diagram.Port_3002"
+               name="%metatype.name.Port_3002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Port"
+               edithelper="BreezeModel.diagram.edit.helpers.PortEditHelper">
+            <param name="semanticHint" value="3002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <metamodelType
+               id="org.sjtu.radlab.breeze.diagram.Connector_3003"
+               name="%metatype.name.Connector_3003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Connector"
+               edithelper="BreezeModel.diagram.edit.helpers.ConnectorEditHelper">
+            <param name="semanticHint" value="3003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <metamodelType
+               id="org.sjtu.radlab.breeze.diagram.Template_3010"
+               name="%metatype.name.Template_3010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Template"
+               edithelper="BreezeModel.diagram.edit.helpers.TemplateEditHelper">
+            <param name="semanticHint" value="3010"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <metamodelType
+               id="org.sjtu.radlab.breeze.diagram.NodeTemplate_3009"
+               name="%metatype.name.NodeTemplate_3009"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="NodeTemplate"
+               edithelper="BreezeModel.diagram.edit.helpers.NodeTemplateEditHelper">
+            <param name="semanticHint" value="3009"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <metamodelType
+               id="org.sjtu.radlab.breeze.diagram.Production_3011"
+               name="%metatype.name.Production_3011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Production"
+               edithelper="BreezeModel.diagram.edit.helpers.ProductionEditHelper">
+            <param name="semanticHint" value="3011"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <specializationType
+               id="org.sjtu.radlab.breeze.diagram.Arch_3012"
+               name="%metatype.name.Arch_3012"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.sjtu.radlab.breeze.diagram.Arch_2001"/>
+            <param name="semanticHint" value="3012"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <specializationType
+               id="org.sjtu.radlab.breeze.diagram.Arch_3013"
+               name="%metatype.name.Arch_3013"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.sjtu.radlab.breeze.diagram.Arch_2001"/>
+            <param name="semanticHint" value="3013"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://org.sjtu.radlab.breeze/v2">
+         <metamodelType
+               id="org.sjtu.radlab.breeze.diagram.Link_4002"
+               name="%metatype.name.Link_4002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="Link"
+               edithelper="BreezeModel.diagram.edit.helpers.LinkEditHelper">
+            <param name="semanticHint" value="4002"/>
+         </metamodelType>
+      </metamodel>
+   </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="org.sjtu.radlab.breeze.diagram.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.sjtu.radlab.breeze.diagram.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="org.sjtu.radlab.breeze.diagram.TypeContext">
+         <elementType ref="org.sjtu.radlab.breeze.diagram.Breeze_1000"/>
+         <elementType ref="org.sjtu.radlab.breeze.diagram.Arch_2001"/>
+         <elementType ref="org.sjtu.radlab.breeze.diagram.Style_2002"/>
+         <elementType ref="org.sjtu.radlab.breeze.diagram.Goku_2003"/>
+         <elementType ref="org.sjtu.radlab.breeze.diagram.Component_3005"/>
+         <elementType ref="org.sjtu.radlab.breeze.diagram.Port_3002"/>
+         <elementType ref="org.sjtu.radlab.breeze.diagram.Connector_3003"/>
+         <elementType ref="org.sjtu.radlab.breeze.diagram.Template_3010"/>
+         <elementType ref="org.sjtu.radlab.breeze.diagram.NodeTemplate_3009"/>
+         <elementType ref="org.sjtu.radlab.breeze.diagram.Production_3011"/>
+         <elementType ref="org.sjtu.radlab.breeze.diagram.Arch_3012"/>
+         <elementType ref="org.sjtu.radlab.breeze.diagram.Arch_3013"/>
+         <elementType ref="org.sjtu.radlab.breeze.diagram.Link_4002"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+	   <extension point="org.eclipse.core.expressions.propertyTesters" id="navigator-proptest.isURIEditorInput">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.sjtu.radlab.breeze.diagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="org.sjtu.radlab.breeze.diagram"
+           properties="isURIEditorInput"
+           class="BreezeModel.diagram.part.BreezeUriEditorInputTester">
+       </propertyTester>
+   </extension>
+
+
+   <extension point="org.eclipse.ui.navigator.navigatorContent" id="navigator-content">
+      <?gmfgen generated="true"?>
+      <navigatorContent
+            id="org.sjtu.radlab.breeze.diagram.resourceContent" 
+            name="%navigatorContentName" 
+            priority="normal" 
+            contentProvider="BreezeModel.diagram.navigator.BreezeNavigatorContentProvider" 
+            labelProvider="BreezeModel.diagram.navigator.BreezeNavigatorLabelProvider"
+            icon="icons/obj16/breezeDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="breeze_diagram"/>
+               </and>
+               <instanceof value="BreezeModel.diagram.navigator.BreezeAbstractNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <or>
+         	   <instanceof value="BreezeModel.diagram.navigator.BreezeAbstractNavigatorItem"/>
+            </or>
+         </possibleChildren>
+         <commonSorter 
+               id="org.sjtu.radlab.breeze.diagram.navigatorSorter" 
+               class="BreezeModel.diagram.navigator.BreezeNavigatorSorter">
+            <parentExpression>
+               <or>
+	              <and>
+    	             <instanceof value="org.eclipse.core.resources.IFile"/>
+        	         <test property="org.eclipse.core.resources.extension" value="breeze_diagram"/>
+                  </and>
+                  <instanceof value="BreezeModel.diagram.navigator.BreezeAbstractNavigatorItem"/>
+               </or>
+            </parentExpression>
+         </commonSorter>
+         <actionProvider
+               class="BreezeModel.diagram.navigator.BreezeNavigatorActionProvider"
+               id="rg.sjtu.radlab.breeze.diagram.CommonActionProvider4">
+         </actionProvider>
+      </navigatorContent>
+      <navigatorContent
+            id="org.sjtu.radlab.breeze.diagram.domainResourceContent" 
+            name="%domainNavigatorContentName" 
+            priority="normal" 
+            contentProvider="BreezeModel.diagram.navigator.BreezeDomainNavigatorContentProvider" 
+            labelProvider="BreezeModel.diagram.navigator.BreezeDomainNavigatorLabelProvider"
+            icon="icons/obj16/breezeDiagramFile.gif"
+            activeByDefault="true">
+         <triggerPoints>
+            <or>
+	           <and>
+    	          <instanceof value="org.eclipse.core.resources.IFile"/>
+        	      <test property="org.eclipse.core.resources.extension" value="breeze"/>
+               </and>
+               <instanceof value="BreezeModel.diagram.navigator.BreezeDomainNavigatorItem"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <instanceof value="BreezeModel.diagram.navigator.BreezeDomainNavigatorItem"/>
+         </possibleChildren>
+      </navigatorContent>
+      <actionProvider
+            id="org.sjtu.radlab.breeze.diagram.navigatorActionProvider"
+            class="BreezeModel.diagram.navigator.GokuNavigatorActionProvider">
+         <enablement>
+            <or>
+            	<adapt type="org.eclipse.core.resources.IFile" />      
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+   
+	   <extension point="org.eclipse.ui.navigator.linkHelper" id="navigator-linkhelper">
+      <?gmfgen generated="true"?>
+      <linkHelper
+            id="org.sjtu.radlab.breeze.diagram.navigatorLinkHelper"
+            class="BreezeModel.diagram.navigator.BreezeNavigatorLinkHelper">
+         <editorInputEnablement>
+            <and>
+               <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
+               <test property="org.sjtu.radlab.breeze.diagram.isURIEditorInput"/>
+            </and>
+         </editorInputEnablement>
+         <selectionEnablement>
+            <instanceof value="BreezeModel.diagram.navigator.BreezeAbstractNavigatorItem"/>
+         </selectionEnablement>
+      </linkHelper>
+   </extension>
+
+   <extension id="BreezeApplication" point="org.eclipse.core.runtime.applications">
+      <?gmfgen generated="true"?>
+      <application>
+         <run class="BreezeModel.diagram.application.BreezeApplication"/>
+      </application>
+   </extension>
+
+  
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="com.goku.breeze.ui.perspective.SafetyPerspective"
+            icon="icons/releng_gears.gif"
+            id="com.goku.breeze.ui.perspective.SafetyPerspective"
+            name="Safety">
+      </perspective>
+   </extension>
+   <extension point="org.eclipse.ui.perspectives" id="rcp-perspective">
+      <?gmfgen generated="true"?>
+      <perspective
+            id="BreezeModel.diagram.BreezePerspective"
+            name="%perspectiveName"
+            class="BreezeModel.diagram.application.DiagramEditorPerspective">
+      </perspective>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="rcp-menu-commands">
+      <?gmfgen generated="true"?>
+      <command
+            name="%openURIActionLabel"
+            description="%openURIActionDescription"
+            categoryId="org.eclipse.ui.category.file"
+            id="org.sjtu.radlab.breeze.diagram.OpenURICommand"/>  
+      <command
+            name="%openActionLabel"
+            description="%openActionDescription"
+            categoryId="org.eclipse.ui.category.file"
+            id="org.sjtu.radlab.breeze.diagram.OpenCommand"/>  
+   </extension>
+
+   <extension point="org.eclipse.ui.bindings" id="rcp-command-bindings">
+      <?gmfgen generated="true"?>
+      <key
+            commandId="org.sjtu.radlab.breeze.diagram.OpenURICommand"
+            sequence="M1+U"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+      <key
+            commandId="org.sjtu.radlab.breeze.diagram.OpenCommand"
+            sequence="M1+O"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.actionSets" id="rcp-actions">
+      <?gmfgen generated="true"?>
+      <actionSet
+            label="%applicationActionSetLabel"
+            visible="true"
+            id="org.sjtu.radlab.breeze.diagram.ActionSet">
+         <action
+               label="%newDiagramActionLabel"
+               class="BreezeModel.diagram.application.DiagramEditorActionBarAdvisor$NewDiagramAction"
+               menubarPath="file/new/additions"
+               id="org.sjtu.radlab.breeze.diagram.NewDiagramAction">
+         </action>
+         <action
+               label="%aboutActionLabel"
+               class="BreezeModel.diagram.application.DiagramEditorActionBarAdvisor$AboutAction"
+               menubarPath="help/additions"
+               id="org.sjtu.radlab.breeze.diagram.AboutAction">
+         </action>
+         <action
+               label="%openURIActionLabel"
+               definitionId="org.sjtu.radlab.breeze.diagram.OpenURICommand"
+               class="BreezeModel.diagram.application.DiagramEditorActionBarAdvisor$OpenURIAction"
+               menubarPath="file/additions"
+               id="org.sjtu.radlab.breeze.diagram.OpenURIAction">
+         </action>
+         <action
+               label="%openActionLabel"
+               definitionId="org.sjtu.radlab.breeze.diagram.OpenCommand"
+               class="BreezeModel.diagram.application.DiagramEditorActionBarAdvisor$OpenAction"
+               menubarPath="file/additions"
+               id="org.sjtu.radlab.breeze.diagram.OpenAction">
+         </action>
+      </actionSet>
+   </extension>
+   <extension point="org.eclipse.emf.validation.constraintProviders">
+      <?gmfgen generated="true"?>
+            <category id="Breeze_Audit_Container" mandatory="false" name="All Constrains">
+         <![CDATA[Holds all the Audits.]]>
+      </category>
+      <constraintProvider cache="true">
+         <package namespaceUri="http://org.sjtu.radlab.breeze/v2"/>
+               <constraints categories="Breeze_Audit_Container">
+                  <constraint id="Link_Audit"
+            lang="OCL"
+            name="LinkConstrain"
+            mode="Live"
+            severity="ERROR" statusCode="200">
+            <![CDATA[self.source <> self.target and self.source.oclIsTypeOf(Port) and self.target.oclIsTypeOf(Port)]]>
+            <description><![CDATA[This is des]]></description>
+            <message><![CDATA[This is message]]></message>
+            <target class="BreezeModel.Link"/>
+         </constraint>
+                  </constraints>
+      </constraintProvider>
+   </extension>
+
+   <extension point="org.eclipse.emf.validation.constraintBindings">
+      <?gmfgen generated="true"?>
+      <clientContext default="false" id="org.sjtu.radlab.breeze.diagramDefaultCtx">
+         <selector class="BreezeModel.diagram.providers.BreezeValidationProvider$DefaultCtx"/>
+      </clientContext>
+      <binding context="org.sjtu.radlab.breeze.diagramDefaultCtx">
+                  <constraint ref="org.sjtu.radlab.breeze.diagram.Link_Audit"/>
+               </binding>
+
+   </extension>
+
+
+   <extension point="org.eclipse.ui.commands" id="update-cmd">
+      <?gmfgen generated="true"?>
+      <command
+         categoryId="org.eclipse.ui.category.edit"
+         defaultHandler="BreezeModel.diagram.part.BreezeDiagramUpdateCommand"
+         description="%update.diagram.description"
+         id="BreezeModel.diagram.updateDiagram"
+         name="%update.diagram.name"/>
+   </extension>
+   
+   <extension point="org.eclipse.ui.bindings" id="update-cmd-binding">
+      <?gmfgen generated="true"?>
+      <key 
+         commandId="BreezeModel.diagram.updateDiagram"
+         contextId="BreezeModel.diagram.ui.diagramContext"
+         schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+         sequence="F5"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.menus" id="context-menus">
+      <?gmfgen generated="true"?>
+      <!-- menuContribution locationURI="menu:org.eclipse.ui.main.menu?after=">
+      </menuContribution>
+      <menuContribution locationURI="toolbar:org.eclipse.ui.main.toolbar?after=">
+      </menuContribution -->
+      <menuContribution locationURI="popup:org.eclipse.gmf.runtime.diagram.ui.DiagramEditorContextMenu">
+         <command commandId="org.sjtu.radlab.breeze.diagram.LoadResourceAction">
+            <visibleWhen>
+               <and>
+                  <with variable="activePartId"><equals value="BreezeModel.diagram.part.BreezeDiagramEditorID"/></with>
+                  <with variable="selection"><iterate ifEmpty="false"> 
+                     <instanceof value="BreezeModel.diagram.edit.parts.BreezeEditPart"/>
+                  </iterate></with>
+               </and>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands" id="menu-commands">
+      <?gmfgen generated="true"?>
+      <category id="BreezeModel.diagram.part.BreezeDiagramEditorID" name="%cmdcategory.name" description="%cmdcategory.desc"/>
+      <command id="org.sjtu.radlab.breeze.diagram.LoadResourceAction"
+         name="Load Resource"
+         categoryId="BreezeModel.diagram.part.BreezeDiagramEditorID"
+         defaultHandler="BreezeModel.diagram.part.LoadResourceAction"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.handlers" id="menu-handlers">
+      <?gmfgen generated="true"?>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="Breeze.digram.ui.navigator.popmenu.viewerContribution"
+            objectClass="org.eclipse.core.resources.IResource">
+
+         <action
+               class="BreezeModel.diagram.navigator.BreezeNavigatorPopActionGenFTA"
+               id="Breeze.diagram.ui.navagator.popmenu.safety.genFTA"
+               label="Generate FTA file"
+               menubarPath="additions">
+         </action>
+         <filter name="extension" value="breeze" />
+      </objectContribution>
+      <objectContribution
+            id="com.goku.breeze.ui.menu.InitModel"
+            objectClass="org.eclipse.core.resources.IResource">
+
+         <action
+               class="com.goku.breeze.ui.menu.InitSafetyModel"
+               id="com.goku.breeze.ui.menu.InitSafetyModel"
+               label="Safety"
+               menubarPath="com.goku.breeze.ui.menu.InitGroup/com.goku.breeze.ui.menu.initSafetyGroup/additions">
+         </action>
+         <filter name="extension" value="breeze" />
+         <menu
+               id="com.goku.breeze.ui.menu.InitGroup"
+               label="Initialize model">
+            <separator
+                  name="init">
+            </separator>
+         </menu>
+         <menu
+               id="com.goku.breeze.ui.menu.initSafetyGroup"
+               label="safety"
+               path="com.goku.breeze.ui.menu.InitGroup/init">
+            <separator
+                  name="safety">
+            </separator>
+         </menu>
+         <menu
+               id="com.goku.breeze.ui.menu.initReliabilityGroup"
+               label="reliability"
+               path="com.goku.breeze.ui.menu.InitGroup/init">
+            <separator
+                  name="reliability">
+            </separator>
+         </menu>
+         <menu
+               id="com.goku.breeze.ui.menu.initPerformanceGroup"
+               label="performance"
+               path="com.goku.breeze.ui.menu.InitGroup/init">
+            <separator
+                  name="performance">
+            </separator>
+         </menu>
+         <menu
+               id="com.goku.breeze.ui.menu.initCorrectnessGroup"
+               label="correctness"
+               path="com.goku.breeze.ui.menu.InitGroup/init">
+            <separator
+                  name="correctness">
+            </separator>
+         </menu>
+         <action
+               class="com.goku.breeze.ui.menu.InitCorrectnessModel"
+               id="com.goku.breeze.ui.menu.InitCorrectnessModel"
+               label="Correctness"
+               menubarPath="com.goku.breeze.ui.menu.InitGroup/com.goku.breeze.ui.menu.initCorrectnessGroup/additions">
+         </action>
+         <action
+               class="com.goku.breeze.ui.menu.InitPerformanceModel"
+               id="com.goku.breeze.ui.menu.InitPerformanceModel"
+               label="Performance"
+               menubarPath="com.goku.breeze.ui.menu.InitGroup/com.goku.breeze.ui.menu.initPerformanceGroup/additions">
+         </action>
+         
+         <action
+               class="com.goku.breeze.ui.menu.InitDTMCModel"
+               id="com.goku.breeze.ui.menu.InitDTMCModel"
+               label="Extended DTMC"
+               menubarPath="com.goku.breeze.ui.menu.InitGroup/com.goku.breeze.ui.menu.initReliabilityGroup/additions">
+         </action>
+         <action
+               class="com.goku.breeze.ui.menu.InitMKVModel"
+               id="com.goku.breeze.ui.menu.InitMKVModel"
+               label="Original DTMC"
+               menubarPath="com.goku.breeze.ui.menu.InitGroup/com.goku.breeze.ui.menu.initReliabilityGroup/additions">
+         </action>
+         <action
+               class="com.goku.breeze.ui.menu.InitRBDModel"
+               id="com.goku.breeze.ui.menu.InitRBDModel"
+               label="RBD"
+               menubarPath="com.goku.breeze.ui.menu.InitGroup/com.goku.breeze.ui.menu.initReliabilityGroup/additions">
+         </action> 
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="com.goku.breeze.ui.menu.SafetyAnalysis"
+            objectClass="org.eclipse.core.resources.IResource">
+         <filter
+               name="extension"
+               value="safety">
+         </filter>
+         <menu
+               id="com.goku.breeze.ui.menu.SafetyAnalysisGroup"
+               label="analysis">
+            <separator
+                  name="analysis">
+            </separator>
+         </menu>
+         <menu
+               id="com.goku.breeze.ui.menu.FmeaAnalysis"
+               label="FMEA"
+               path="com.goku.breeze.ui.menu.SafetyAnalysisGroup/analysis">
+            <separator
+                  name="fmea">
+            </separator>
+         </menu>
+         <menu
+               id="com.goku.breeze.ui.menu.FtaAnalysisGroup"
+               label="FTA"
+               path="com.goku.breeze.ui.menu.SafetyAnalysisGroup/analysis">
+            <separator
+                  name="fta">
+            </separator>
+         </menu>
+         <action
+               class="com.goku.breeze.ui.menu.ActionFmea"
+               id="com.goku.breeze.ui.menu.ActionFmea"
+               label="fmea"
+               menubarPath="com.goku.breeze.ui.menu.SafetyAnalysisGroup/com.goku.breeze.ui.menu.FmeaAnalysis/additions">
+         </action>
+         <action
+               class="com.goku.breeze.ui.menu.ActionGenerateFta"
+               id="com.goku.breeze.ui.menu.ActionFta"
+               label="Generate OpenFTA File"
+               menubarPath="com.goku.breeze.ui.menu.SafetyAnalysisGroup/com.goku.breeze.ui.menu.FtaAnalysisGroup/additions">
+         </action>
+         <action
+               class="com.goku.breeze.ui.menu.ActionSmvConfig"
+               id="com.goku.breeze.ui.menu.ActionCheckDeadLock2"
+               label="Check deadlock ..."
+               menubarPath="com.goku.breeze.ui.menu.SafetyAnalysisGroup/com.goku.breeze.ui.ModelCheckAnalysis/additions">
+         </action>
+         <action
+               class="com.goku.breeze.ui.menu.ActionCutSetAnalysis"
+               id="com.goku.breeze.ui.menu.ActionCutSetAnalysis"
+               label="Cut Set Analysis"
+               menubarPath="com.goku.breeze.ui.menu.SafetyAnalysisGroup/com.goku.breeze.ui.menu.FtaAnalysisGroup/additions">
+         </action>
+         <action
+               class="com.goku.breeze.ui.menu.ActionPathSetAnalysis"
+               id="com.goku.breeze.ui.menu.ActionPathSetAnalysis"
+               label="Path Set Analysis"
+               menubarPath="com.goku.breeze.ui.menu.SafetyAnalysisGroup/com.goku.breeze.ui.menu.FtaAnalysisGroup/additions">
+         </action>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="com.goku.breeze.ui.menu.convert"
+            objectClass="org.eclipse.core.resources.IResource">
+         <action
+               class="com.goku.breeze.ui.menu.ActionConvertSmv"
+               id="com.goku.breeze.ui.menu.ActionConvertSmv"
+               label="readable nusmv"
+               menubarPath="com.goku.breeze.ui.menu.convertGroup/additions">
+         </action>
+         <filter
+               name="extension"
+               value="smv">
+         </filter>
+         <menu
+               id="com.goku.breeze.ui.menu.convertGroup"
+               label="convert">
+         </menu>
+      </objectContribution>
+      <objectContribution
+      	id="org.sjtu.radlab.breeze.diagram.productionCheck"
+            objectClass="org.eclipse.core.resources.IResource">
+         <action
+               class="com.wxw.breeze.production.SAProductionCheck"
+               id="com.wxw.breeze.commonconstraing"
+               label="Common Constraing Check"
+               menubarPath="com.wxw.breeze.productionmenu/init">
+         </action>
+         <filter
+               name="extension"
+               value="breeze">
+         </filter>
+         <menu
+               id="com.wxw.breeze.productionmenu"
+               label="Production Check">
+            <separator
+                  name="init">
+            </separator>
+         </menu>
+         <action
+               class="com.goku.breeze.ui.menu.InitProduction"
+               id="com.wxw.breeze.productioninit"
+               label="Initialize a production"
+               menubarPath="com.wxw.breeze.productionmenu/init">
+         </action>
+         <action
+               class="com.wxw.breeze.production.StyleCheck"
+               id="com.wxw.breeze.styleCheck"
+               label="Style Check"
+               menubarPath="com.wxw.breeze.productionmenu/init">
+         </action>
+        </objectContribution>
+<objectContribution
+            adaptable="false"
+            id="com.goku.breeze.ui.menu.CorrectnessAnalysis"
+            objectClass="org.eclipse.core.resources.IResource">
+         <menu
+               id="com.goku.breeze.ui.menu.CorrectnessAnalysisGroup"
+               label="analysis">
+            <separator
+                  name="analysis">
+            </separator>
+         </menu>
+         <menu
+               id="com.goku.breeze.ui.ModelCheckAnalysis"
+               label="Model Checking"
+               path="com.goku.breeze.ui.menu.CorrectnessAnalysisGroup/analysis">
+            <separator
+                  name="model-checking">
+            </separator>
+         </menu>
+         <action
+               class="com.goku.breeze.ui.menu.ActionSmvConfig"
+               id="com.goku.breeze.ui.menu.ActionCheckDeadLock2"
+               label="Check deadlock ..."
+               menubarPath="com.goku.breeze.ui.menu.CorrectnessAnalysisGroup/com.goku.breeze.ui.ModelCheckAnalysis/additions">
+         </action>
+         <action
+               class="com.goku.breeze.ui.menu.ActionCheckDeadLock"
+               id="com.goku.breeze.ui.menu.ActionCheckDeadLock"
+               label="check dead lock"
+               menubarPath="com.goku.breeze.ui.menu.CorrectnessAnalysisGroup/com.goku.breeze.ui.ModelCheckAnalysis/additions">
+         </action>
+         <filter
+               name="extension"
+               value="correctness">
+         </filter>
+      </objectContribution>
+      <objectContribution
+            adaptable="false"
+            id="com.goku.breeze.ui.menu.Refresh"
+            objectClass="org.eclipse.core.resources.IProject">
+         <action
+               class="com.goku.breeze.ui.menu.ActionRefresh"
+               id="com.goku.breeze.ui.menu.ActionRefresh"
+               label="Refresh"
+               menubarPath="additions">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.goku.breeze.ui.editor.SafetyEditor"
+            contributorClass="com.goku.breeze.ui.editor.SafetyEditorContributor"
+            default="false"
+            extensions="safety"
+            icon="icons/releng_gears.gif"
+            id="com.goku.breeze.editor.SafetyEditor"
+            name="Safety Editor">
+      </editor>
+
+      <editor
+            class="com.goku.breeze.ui.editor.CorrectnessEditor"
+            default="false"
+            extensions="correctness"
+            icon="icons/obj16/correctnessFileIcon.png"
+            id="com.goku.breeze.editor.CorrectnessEditor"
+            name="Correctness Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.goku.breeze.ui.editor.RBDEditor"
+            contributorClass="com.goku.breeze.ui.editor.RBDEditorContributor"
+            default="false"
+            extensions="rbd_model"
+            icon="icons/releng_gears.gif"
+            id="com.goku.breeze.editor.RBDEditor"
+            name="RBD Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.goku.breeze.ui.editor.MKVEditor"
+            contributorClass="com.goku.breeze.ui.editor.MKVEditorContributor"
+            default="false"
+            extensions="mkv_model"
+            icon="icons/releng_gears.gif"
+            id="com.goku.breeze.editor.MKVEditor"
+            name="MKV Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.goku.breeze.ui.editor.DTMCEditor"
+            contributorClass="com.goku.breeze.ui.editor.DTMCEditorContributor"
+            default="false"
+            extensions="dtmc_model"
+            icon="icons/releng_gears.gif"
+            id="com.goku.breeze.editor.DTMCEditor"
+            name="DTMC Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.console.consoleFactories">
+      <consoleFactory
+            class="com.goku.breeze.ui.console.ConsoleFactory"
+            label="Breeze">
+      </consoleFactory>
+   </extension>
+  <extension
+          point="org.eclipse.ui.views">
+       <view
+             allowMultiple="true"
+             class="com.goku.breeze.ui.navigator.BreezeExplorer"
+             icon="icons/obj16/BreezeExplorerIcon.png"
+             id="com.goku.breeze.ui.navigator.view"
+             name="Breeze Explorer">
+       </view>
+    </extension>
+    <extension
+          point="org.eclipse.ui.navigator.viewer">
+       <viewer
+             viewerId="com.goku.breeze.ui.navigator.view">
+       </viewer>
+       <viewerContentBinding
+             viewerId="com.goku.breeze.ui.navigator.view">
+          <includes>
+             <contentExtension
+                   pattern="org.eclipse.ui.navigator.resourceContent">
+             </contentExtension>
+             <contentExtension
+                   pattern="org.eclipse.ui.navigator.resources.filters.*">
+             </contentExtension>
+          </includes>
+       </viewerContentBinding>
+    </extension>
+    <extension
+          point="org.eclipse.ui.editors">
+       <editor
+             class="com.goku.breeze.ui.editor.SMVEditor"
+             extensions="smv"
+             icon="icons/obj16/smv_icon.png"
+             id="com.goku.breeze.ui.editor.SMVEditor"
+             name="SMV Editor">
+       </editor>
+       <editor
+             class="com.goku.breeze.ui.editor.XMLEditor"
+             extensions="breeze,xml"
+             icon="icons/obj16/breezeFileIcon.png"
+             id="com.goku.breeze.ui.editor.XMLEditor"
+             name="XML Editor">
+       </editor>
+    </extension>
+    <extension
+          point="org.eclipse.ui.menus">
+       <menuContribution
+             allPopups="false"
+             locationURI="menu:window?after=additions">
+          <command
+                commandId="com.goku.breeze.ui.menu.ToggleToolBar"
+                style="push">
+          </command>
+          <separator
+                name="com.goku.breeze.ui.menu.Separator0"
+                visible="true">
+          </separator>
+          <command
+                commandId="com.goku.breeze.ui.menu.OpenPreference"
+                style="push">
+          </command>
+       </menuContribution>
+    </extension>
+    <extension
+          point="org.eclipse.ui.commands">
+       <command
+             defaultHandler="com.goku.breeze.ui.menu.OpenPreference"
+             id="com.goku.breeze.ui.menu.OpenPreference"
+             name="Preference">
+       </command>
+       <command
+             defaultHandler="com.goku.breeze.ui.menu.ToggleToolBar"
+             id="com.goku.breeze.ui.menu.ToggleToolBar"
+             name="Show/Hide Toolbar">
+       </command>
+    </extension>
+    <extension
+          point="org.eclipse.ui.views">
+       <view
+             class="com.goku.breeze.ui.view.ViewNuSMV"
+             icon="icons/obj16/nusmvViewIcon.png"
+             id="com.goku.breeze.ui.view.ViewNuSMV"
+             name="NuSMV"
+             restorable="true">
+       </view>
+    </extension>
+    <extension
+          id="Breeze"
+          point="org.eclipse.core.runtime.products">
+       <product
+             application="org.sjtu.radlab.breeze.diagram.BreezeApplication"
+             name="Breeze">
+          <property
+                name="windowImages"
+                value="icons/icons/breeze_ico_16.png,icons/icons/breeze_ico_32.png,breeze48.png,icons/icons/breeze_ico_64.png,icons/icons/breeze_ico_128.png">
+          </property>
+          <property
+                name="appName"
+                value="Breeze">
+          </property>
+          <property
+                name="aboutImage"
+                value="breeze48.png">
+          </property>
+       </product>
+    </extension>
+    <extension
+          point="org.eclipse.ui.splashHandlers">
+       <splashHandler
+             class="org.sjtu.radlab.breeze.diagram.splashHandlers.ExtensibleSplashHandler"
+             id="org.sjtu.radlab.breeze.diagram.splashHandlers.extensible">
+       </splashHandler>
+       <splashHandlerProductBinding
+             productId="org.sjtu.radlab.breeze.diagram.Breeze"
+             splashId="org.sjtu.radlab.breeze.diagram.splashHandlers.extensible">
+       </splashHandlerProductBinding>
+    </extension>
+    <extension
+          point="org.sjtu.radlab.breeze.diagram.splashExtension">
+       <splashExtension
+             icon="icons/af.png"
+             id="af"
+             tooltip="Application Framework">
+       </splashExtension>
+       <splashExtension
+             icon="icons/embedded.png"
+             id="embedded"
+             tooltip="Embedded">
+       </splashExtension>
+       <splashExtension
+             icon="icons/enterprise.png"
+             id="enterprise"
+             tooltip="Enterprise">
+       </splashExtension>
+       <splashExtension
+             icon="icons/languages.png"
+             id="languages"
+             tooltip="Languages">
+       </splashExtension>
+       <splashExtension
+             icon="icons/rcp.png"
+             id="rcp"
+             tooltip="RCP">
+       </splashExtension>
+    </extension>
+    <extension
+          id="goku"
+          point="org.eclipse.core.runtime.products">
+       <product
+             application="org.sjtu.radlab.breeze.diagram.BreezeApplication"
+             name="Breeze">
+          <property
+                name="windowImages"
+                value="icons/icons/breeze_ico_16.png,icons/icons/breeze_ico_32.png,icons/icons/breeze_ico_48.png,icons/icons/breeze_ico_64.png,icons/icons/breeze_ico_128.png">
+          </property>
+          <property
+                name="appName"
+                value="Breeze">
+          </property>
+       </product>
+    </extension>
+
+<extension
+          id="wxw.breeze.rightclick.menu"
+          name="right click menu"
+          point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="Breeze.digram.ui.navigator.popmenu.viewerContribution"
+            objectClass="BreezeModel.diagram.edit.parts.StyleEditPart">
+
+         <action
+               class="com.wxw.breeze.production.AllProductionApply"
+               id="wxw.breeze.rightclick.menu.productionapp"
+               label="Apply All Productions"
+               menubarPath="additions">
+         </action>
+        
+      </objectContribution>    
+      
+       <objectContribution
+            id="Breeze.digram.ui.navigator.popmenu.viewerContribution1"
+            objectClass="BreezeModel.diagram.edit.parts.ProductionEditPart">
+
+         <action
+               class="com.wxw.breeze.production.ProductionApply"
+               id="wxw.breeze.rightclick.menu.productionapp1"
+               label="Apply Production"
+               menubarPath="additions">
+         </action>
+        
+      </objectContribution>
+    </extension>
+
+
+   <!-- optionally, specify keybindings -->
+</plugin>

@@ -1,0 +1,44 @@
+package com.goku.breeze.compiler.smv;
+
+public class SMVElement {
+	public static final char BRACE_LEFT = '{';
+	public static final char BRACE_RIGHT = '}';
+	public static final char COLON = ':';
+	public static final char COMMA = ',';
+	public static final String DECL_MODE_CONSTANT_PREFIX = "mode_";
+	public static final String DECL_MODE_NAME = "mode";
+	public static final String DECL_MODULE_INSTANCE_PREFIX = "ins_";
+	public static final char DOT = '.';
+	public static final String KW_ASSIGN = "ASSIGN";
+	public static final String KW_BOOLEAN = "boolean";
+	public static final String KW_CASE_END = "esac";
+	public static final String KW_CASE_START = "case";
+	public static final String KW_DEFINE = "DEFINE";
+	public static final String KW_F = "F";
+	public static final String KW_G = "G";
+	public static final String KW_INIT = "init";
+	public static final String KW_INTEGER = "integer";
+	public static final String KW_INVAR = "INVAR";
+	public static final String KW_LTLSPEC = "LTLSPEC";
+	public static final String KW_MODULE = "MODULE";
+	public static final String KW_NEXT = "next";
+	public static final String KW_TRANS = "TRANS";
+	public static final String KW_VAR = "VAR";
+	public static final String MAIN_MODULE_NAME = "main";
+	public static final char NEWLINE = '\n';
+	public static final char OP_AND = '&';
+	public static final String OP_ASSIGN = ":=";
+	public static final char OP_EQUAL = '=';
+	public static final char OP_GT = '>';
+	public static final String OP_IMPLY = "->";
+	public static final char OP_LT = '<';
+	public static final char OP_NOT = '!';
+	public static final char OP_OR = '|';
+	public static final char PARENTHESES_LEFT = '(';
+	public static final char PARENTHESES_RIGHT = ')';
+	public static final char SEMICOLON = ';';
+	public static final char SPACE = ' ';
+	public static final String VALUE_BOOL_FALSE = "FALSE";
+	public static final String VALUE_BOOL_TRUE = "TRUE";
+	public static final char VALUE_INT_ZERO = '0';
+}

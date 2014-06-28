@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notation:Diagram xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:xmi="http://www.omg.org/XMI" xmlns:Breeze="http://org.sjtu.radlab.breeze/v2" xmi:version="2.0" xmi:id="_mJr2QM4eEeOEZLJRo4d2yQ" type="Breeze" name="tt.breeze_diagram" measurementUnit="Pixel">
+  <children xmi:type="notation:Shape" xmi:id="_m5hXwM4eEeOEZLJRo4d2yQ" type="2001" fontName="Î¢ÈíÑÅºÚ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_m5lpMM4eEeOEZLJRo4d2yQ" type="5002"/>
+    <children xmi:type="notation:DecorationNode" xmi:id="_m5lpMc4eEeOEZLJRo4d2yQ" type="7001">
+      <children xmi:type="notation:Shape" xmi:id="_nG-k8M4eEeOEZLJRo4d2yQ" type="3005" fontName="Î¢ÈíÑÅºÚ">
+        <children xmi:type="notation:DecorationNode" xmi:id="_nG_MAM4eEeOEZLJRo4d2yQ" type="5005"/>
+        <children xmi:type="notation:Shape" xmi:id="_o0_l8M4eEeOEZLJRo4d2yQ" type="3002" fontName="Î¢ÈíÑÅºÚ">
+          <element xmi:type="Breeze:Port" href="tt.breeze#_o09wwM4eEeOEZLJRo4d2yQ"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_o0_l8c4eEeOEZLJRo4d2yQ"/>
+        </children>
+        <element xmi:type="Breeze:Component" href="tt.breeze#_nG8vwM4eEeOEZLJRo4d2yQ"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nG-k8c4eEeOEZLJRo4d2yQ" x="240" y="104"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_nV7m8M4eEeOEZLJRo4d2yQ" type="3005" fontName="Î¢ÈíÑÅºÚ" fillColor="255">
+        <children xmi:type="notation:DecorationNode" xmi:id="_nV8OAM4eEeOEZLJRo4d2yQ" type="5005"/>
+        <children xmi:type="notation:Shape" xmi:id="_pR1S8M4eEeOEZLJRo4d2yQ" type="3002" fontName="Î¢ÈíÑÅºÚ">
+          <element xmi:type="Breeze:Port" href="tt.breeze#_pR0E0M4eEeOEZLJRo4d2yQ"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pR1S8c4eEeOEZLJRo4d2yQ"/>
+        </children>
+        <element xmi:type="Breeze:Component" href="tt.breeze#_nV6Y0M4eEeOEZLJRo4d2yQ"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_nV7m8c4eEeOEZLJRo4d2yQ" x="111" y="276"/>
+      </children>
+      <children xmi:type="notation:Shape" xmi:id="_noeIcM4eEeOEZLJRo4d2yQ" type="3003" fontName="Î¢ÈíÑÅºÚ">
+        <children xmi:type="notation:DecorationNode" xmi:id="_noevgM4eEeOEZLJRo4d2yQ" type="5004"/>
+        <children xmi:type="notation:Shape" xmi:id="_pCWFcM4eEeOEZLJRo4d2yQ" type="3002" fontName="Î¢ÈíÑÅºÚ">
+          <element xmi:type="Breeze:Port" href="tt.breeze#_pCU3UM4eEeOEZLJRo4d2yQ"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pCWFcc4eEeOEZLJRo4d2yQ" x="30" y="35"/>
+        </children>
+        <children xmi:type="notation:Shape" xmi:id="_pwQ7YM4eEeOEZLJRo4d2yQ" type="3002" fontName="Î¢ÈíÑÅºÚ">
+          <element xmi:type="Breeze:Port" href="tt.breeze#_pwPtQM4eEeOEZLJRo4d2yQ"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_pwRicM4eEeOEZLJRo4d2yQ"/>
+        </children>
+        <element xmi:type="Breeze:Connector" href="tt.breeze#_noc6UM4eEeOEZLJRo4d2yQ"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_noeIcc4eEeOEZLJRo4d2yQ" x="121" y="176"/>
+      </children>
+    </children>
+    <element xmi:type="Breeze:Arch" href="tt.breeze#_m5SuQM4eEeOEZLJRo4d2yQ"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_m5hXwc4eEeOEZLJRo4d2yQ" x="319" y="131"/>
+  </children>
+  <styles xmi:type="notation:DiagramStyle" xmi:id="_mJsdUM4eEeOEZLJRo4d2yQ"/>
+  <element xmi:type="Breeze:Breeze" href="tt.breeze#_mG5A8M4eEeOEZLJRo4d2yQ"/>
+  <edges xmi:type="notation:Connector" xmi:id="_rEaD0M4eEeOEZLJRo4d2yQ" type="4002" source="_o0_l8M4eEeOEZLJRo4d2yQ" target="_pwQ7YM4eEeOEZLJRo4d2yQ">
+    <styles xmi:type="notation:FontStyle" xmi:id="_rEaD0c4eEeOEZLJRo4d2yQ" fontName="Î¢ÈíÑÅºÚ"/>
+    <element xmi:type="Breeze:Link" href="tt.breeze#_rAS_4M4eEeOEZLJRo4d2yQ"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rEaD0s4eEeOEZLJRo4d2yQ" points="[-5, 2, 113, -67]$[-118, 67, 0, -2]"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rFJqsM4eEeOEZLJRo4d2yQ" id="(0.6,0.2)"/>
+  </edges>
+  <edges xmi:type="notation:Connector" xmi:id="_rsjo8M4eEeOEZLJRo4d2yQ" type="4002" source="_pCWFcM4eEeOEZLJRo4d2yQ" target="_pR1S8M4eEeOEZLJRo4d2yQ">
+    <styles xmi:type="notation:FontStyle" xmi:id="_rsjo8c4eEeOEZLJRo4d2yQ" fontName="Î¢ÈíÑÅºÚ"/>
+    <element xmi:type="Breeze:Link" href="tt.breeze#_rseJYM4eEeOEZLJRo4d2yQ"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_rsjo8s4eEeOEZLJRo4d2yQ" points="[-4, 6, 35, -58]$[-40, 69, -1, 5]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_rspIgM4eEeOEZLJRo4d2yQ" id="(0.4,0.1)"/>
+  </edges>
+</notation:Diagram>

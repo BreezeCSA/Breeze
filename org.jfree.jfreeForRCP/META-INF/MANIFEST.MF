@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JfreeForRCP
+Bundle-SymbolicName: org.jfree.jfreeForRCP
+Bundle-Version: 1.0.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: org.jfree.chart,
+ org.jfree.chart.labels,
+ org.jfree.chart.plot,
+ org.jfree.chart.renderer.category,
+ org.jfree.chart.renderer.xy,
+ org.jfree.data.category,
+ org.jfree.data.general,
+ org.jfree.experimental.chart.swt,
+ org.jfree.ui
+Require-Bundle: org.eclipse.swt;bundle-version="3.102.1"

@@ -1,0 +1,7 @@
+# Tracing options for the org.sjtu.radlab.breeze.diagram plug-in
+
+# Common issues
+org.sjtu.radlab.breeze.diagram/debug=false
+
+# Visual IDs
+org.sjtu.radlab.breeze.diagram/debug/visualID=false

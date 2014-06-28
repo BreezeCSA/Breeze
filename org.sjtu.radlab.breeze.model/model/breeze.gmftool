@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmftool:ToolRegistry
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
+  <palette
+      title="BreezeModelPalette"
+      description=""
+      default="//@palette/@tools.1">
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="General Element"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Component Templeate"
+          description="Create Component Template"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Architecture Element"
+        description=""
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Architecture"
+          description="Create new Architecture"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Component"
+          description="Create New Component"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Link"
+          description="Create New Link"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Port"
+          description="Create New Port"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Connector"
+          description="Create New Connector"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Aspect Element"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Aspect Component"
+          description="Create new Aspect Component"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Goku"
+          description="Create new Goku"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="Architecture Style"
+        collapsible="true">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Architecture Style"
+          description="Create New Style"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Template"
+          description="Create Component and Connector Template"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Template Node"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Production"/>
+    </tools>
+  </palette>
+</gmftool:ToolRegistry>

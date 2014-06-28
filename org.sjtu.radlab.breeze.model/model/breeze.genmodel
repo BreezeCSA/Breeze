@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.sjtu.radlab.breeze.model/src" modelPluginID="org.sjtu.radlab.breeze.model"
+    modelName="Breeze" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>breeze.ecore</foreignModel>
+  <genPackages prefix="breeze" resource="XMI" disposableProviderFactory="true" ecorePackage="breeze.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="breeze.ecore#//ArchType">
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//ArchType/ArchTemplate"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//ArchType/ArchInstance"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//ArchType/ArchGeneral"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="breeze.ecore#//AccessType">
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//AccessType/Public"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//AccessType/Private"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//AccessType/Protected"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="breeze.ecore#//DirectionType">
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//DirectionType/in"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//DirectionType/out"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//DirectionType/inout"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="breeze.ecore#//NodeTemplateType">
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//NodeTemplateType/Component"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//NodeTemplateType/Connector"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="breeze.ecore#//StyleType">
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//StyleType/CS"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//StyleType/C2"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="breeze.ecore#//MultiAccess">
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//MultiAccess/Yes"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//MultiAccess/No"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="breeze.ecore#//Availability">
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//Availability/Undetermined"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//Availability/Active"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//Availability/Idel"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//Availability/Unavailable"/>
+    </genEnums>
+    <genClasses ecoreClass="breeze.ecore#//Breeze">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference breeze.ecore#//Breeze/arch"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference breeze.ecore#//Breeze/style"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference breeze.ecore#//Breeze/gkeee"/>
+    </genClasses>
+    <genClasses ecoreClass="breeze.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//Attribute/key"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//Attribute/value"/>
+    </genClasses>
+    <genClasses ecoreClass="breeze.ecore#//Port">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//Port/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//Port/direction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//Port/multiaccess"/>
+    </genClasses>
+    <genClasses ecoreClass="breeze.ecore#//Style">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference breeze.ecore#//Style/arch"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference breeze.ecore#//Style/production"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//Style/StyleType"/>
+    </genClasses>
+    <genClasses ecoreClass="breeze.ecore#//Arch">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference breeze.ecore#//Arch/node"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference breeze.ecore#//Arch/edge"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//Arch/type"/>
+    </genClasses>
+    <genClasses ecoreClass="breeze.ecore#//Node">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference breeze.ecore#//Node/port"/>
+    </genClasses>
+    <genClasses ecoreClass="breeze.ecore#//Link">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//Link/directed"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="breeze.ecore#//Attributes">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference breeze.ecore#//Attributes/attribute"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="breeze.ecore#//Nameable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//Nameable/name"/>
+    </genClasses>
+    <genClasses ecoreClass="breeze.ecore#//Documentable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//Documentable/documentation"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="breeze.ecore#//ArchElement"/>
+    <genClasses ecoreClass="breeze.ecore#//Component"/>
+    <genClasses ecoreClass="breeze.ecore#//Connector"/>
+    <genClasses ecoreClass="breeze.ecore#//RelationShip">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference breeze.ecore#//RelationShip/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference breeze.ecore#//RelationShip/target"/>
+    </genClasses>
+    <genClasses ecoreClass="breeze.ecore#//NodeInstance">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference breeze.ecore#//NodeInstance/TR"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//NodeInstance/availability"/>
+    </genClasses>
+    <genClasses ecoreClass="breeze.ecore#//NodeTemplate">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//NodeTemplate/type"/>
+    </genClasses>
+    <genClasses ecoreClass="breeze.ecore#//Template">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference breeze.ecore#//Template/node"/>
+    </genClasses>
+    <genClasses ecoreClass="breeze.ecore#//Production">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference breeze.ecore#//Production/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference breeze.ecore#//Production/right"/>
+    </genClasses>
+    <genClasses ecoreClass="breeze.ecore#//goku">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//goku/power"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//goku/win"/>
+    </genClasses>
+    <genClasses ecoreClass="breeze.ecore#//Method">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//Method/type"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

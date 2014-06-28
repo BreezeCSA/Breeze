@@ -1,0 +1,11 @@
+MODULE RandModule(prob)
+VAR
+	dt:0..99;
+	hit:boolean;
+ASSIGN
+	init(hit):=FALSE;
+	next(hit):=case
+		0<=dt & dt<=prob : TRUE;
+		TRUE : FALSE;
+	esac;
+

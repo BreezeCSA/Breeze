@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+gmf_dashboard/domainGenerationModel=platform\:/resource/org.sjtu.radlab.breeze.model/model/breeze.genmodel
+gmf_dashboard/domainModel=platform\:/resource/org.sjtu.radlab.breeze.model/model/breeze.ecore
+gmf_dashboard/generationModel=platform\:/resource/org.sjtu.radlab.breeze.model/model/breeze.gmfgen
+gmf_dashboard/graphicalDefinitionModel=platform\:/resource/org.sjtu.radlab.breeze.model/model/breeze.gmfgraph
+gmf_dashboard/mappingModel=platform\:/resource/org.sjtu.radlab.breeze.model/model/breeze.gmfmap
+gmf_dashboard/option_rcp=*
+gmf_dashboard/toolingDefinitionModel=platform\:/resource/org.sjtu.radlab.breeze.model/model/breeze.gmftool

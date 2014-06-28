@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated breeze -->
+      <package
+            uri="http://org.sjtu.radlab.breeze/v2"
+            class="BreezeModel.breezePackage"
+            genModel="model/breeze.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated breeze -->
+      <parser
+            type="breeze"
+            class="BreezeModel.util.breezeResourceFactoryImpl"/>
+   </extension>
+
+</plugin>

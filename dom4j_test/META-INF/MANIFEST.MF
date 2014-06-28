@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Dom4j_test
+Bundle-SymbolicName: dom4j_test
+Bundle-Version: 1.0.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: org.dom4j,
+ org.dom4j.io,
+ org.dom4j.tree

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         id="product"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.sjtu.radlab.breeze.diagram.BreezeApplication"
+            name="Breeze">
+         <property
+               name="windowImages"
+               value="icons/icons/breeze_ico_16.png,icons/icons/breeze_ico_32.png,icons/icons/breeze_ico_48.png,icons/icons/breeze_ico_64.png,icons/icons/breeze_ico_128.png">
+         </property>
+         <property
+               name="appName"
+               value="Breeze">
+         </property>
+      </product>
+   </extension>
+   <extension
+         id="Breeze"
+         point="org.eclipse.core.runtime.products">
+      <product
+            application="org.sjtu.radlab.breeze.diagram.BreezeApplication"
+            name="Breeze">
+         <property
+               name="windowImages"
+               value="icons/icons/breeze_ico_16.png,icons/icons/breeze_ico_32.png,icons/icons/breeze_ico_48.png,icons/icons/breeze_ico_64.png,icons/icons/breeze_ico_128.png">
+         </property>
+         <property
+               name="appName"
+               value="Breeze">
+         </property>
+      </product>
+   </extension>
+
+</plugin>

@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: macos
+Bundle-SymbolicName: org.sjtu.radlab.breeze.launch.macos;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: org.sjtu.radlab
