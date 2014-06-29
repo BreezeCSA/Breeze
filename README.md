@@ -6,9 +6,10 @@ Breeze is a scalable, visual, rule-supported modeling tool for software architec
 1. Editor provides text editor which enables creating and manipulating the architecture model, properties and productions. 
 2. Parser includes model parser and rule parser. Model parser is used to parse the xml based Breeze/ADL document into internal representations. The rule parser parses each production into two internal representations - LHS and RHS.
 
+3. Viewer provides user friendly viewers which include both design and explorer viewer for architect.
 
-3. Viewer provides user friendly viewers which include both design and explorer viewer for architect. 
 4. Matcher is capable of checking if there exist some parts of the architecture model matching the LHS of a rule. 
+
 5. Executor implements these dynamic operations.
 
 Requirements
