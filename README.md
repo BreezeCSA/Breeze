@@ -1,10 +1,12 @@
-Breeze
-======
-Introduction
+roduction
 ======
 Breeze is a scalable, visual, rule-supported modeling tool for software architecture (SA) based on Eclipse framework, which provides multi-views for architecture designers to create, edit and verify the SA of a system. Breeze is based on Breeze/ADL proposed by our group [citation], and can be applied to large, complex software systems. Breeze can capture both static architecture specifications and dynamic reconfigurations, in terms of Breeze/ADL definitions. Breeze provides symbolic features to model typical SA elements (e.g., component, connector and link). Based on this, the style (e.g., C-S) for SA can be verified and constrained. Moreover, Breeze supports the production definition to specify the architecture evolution. The production derives from the graph rewriting rules in the graph transformation. A production is divided into two parts, that is, left hand side (LHS) and right hand side (RHS). The LHS represents the precondition and RHS means the results. If there is a part of architecture model satisfying the LHS then this part should be replaced by the RHS. By leveraging the production, Breeze provides some classical operations, like addition and removal, to implement the architecture reconfiguration. Breeze consists of five modules: 
+
+
 1. Editor provides text editor which enables creating and manipulating the architecture model, properties and productions. 
 2. Parser includes model parser and rule parser. Model parser is used to parse the xml based Breeze/ADL document into internal representations. The rule parser parses each production into two internal representations - LHS and RHS.
+
+
 3. Viewer provides user friendly viewers which include both design and explorer viewer for architect. 
 4. Matcher is capable of checking if there exist some parts of the architecture model matching the LHS of a rule. 
 5. Executor implements these dynamic operations.
