@@ -927,7 +927,7 @@
          <action
                class="com.wxw.breeze.production.SAProductionCheck"
                id="com.wxw.breeze.commonconstraing"
-               label="Common Constraing Check"
+               label="Common Constraint Check"
                menubarPath="com.wxw.breeze.productionmenu/init">
          </action>
          <filter
@@ -936,7 +936,7 @@
          </filter>
          <menu
                id="com.wxw.breeze.productionmenu"
-               label="Production Check">
+               label="Constraint Check">
             <separator
                   name="init">
             </separator>
