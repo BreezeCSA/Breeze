@@ -18,7 +18,8 @@
 
    <splash
       location="org.sjtu.radlab.breeze.diagram"
-      handlerType="extensible" />
+      startupMessageRect="7,252,445,20"
+      startupForegroundColor="00FF00" />
    <launcher>
       <linux icon="/org.sjtu.radlab.breeze.diagram/breeze.xpm"/>
       <solaris/>

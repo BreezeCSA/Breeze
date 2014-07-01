@@ -80,13 +80,18 @@ public class BreezeDiagramEditor extends DiagramDocumentEditor {
 		if (obj instanceof URIEditorInput) {
 			URIEditorInput input = (URIEditorInput) obj;
 			String[] segments = input.getURI().segments();
+			String trs=input.getURI().path();
+			Boolean mark_pro=false;
+			if(trs.indexOf("_production")!=-1&&trs.indexOf("_diagram")!=-1)
+				mark_pro=true;
 			if (segments.length - 2 >= 0) {
 				if (BreezeGk.SAFETY.equals(segments[segments.length - 2])) {
 					root.add(factory.createArchitectureStyle4Group());
 					return root;
 				}
-				if (segments.length>=4&&segments[4].indexOf("production") != -1) {
-					factory.fillPalette_s(root);
+				//if (segments.length>=4&&segments[5].indexOf("production") != -1) {
+				if(mark_pro){	
+				factory.fillPalette_s(root);
 					
 					return root;
 				}

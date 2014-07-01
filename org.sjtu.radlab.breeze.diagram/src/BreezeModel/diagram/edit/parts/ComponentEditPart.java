@@ -255,6 +255,7 @@ public class ComponentEditPart extends AbstractBorderedShapeEditPart {
 	public void setBackgroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setBackgroundColor(color);
+		//	BreezeModel.diagram.edit.parts.NodeTemplateEditPart.ComponentFigure cs=new ComponentShape();
 		}
 	}
 
