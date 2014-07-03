@@ -67,12 +67,12 @@ To create a production, designer needs to right click the ‘Constraint Check/In
 
 Resources
 ======
-1. Demo
+Demo
 
 A demo of Breeze is available at:
 https://www.youtube.com/watch?v=nVYJZahZCAo&feature=youtu.be . 
 
-2. Slides
+Slides
 
 Slides describing the theoretical foundation, i.e., Breeze Graph Grammar and Breeze/ADL, of Breeze are available at:
 
@@ -80,7 +80,7 @@ Slides describing the theoretical foundation, i.e., Breeze Graph Grammar and Bre
 
 2). https://docs.google.com/presentation/d/1H5-BUt0LDrus-ihsEOZOG3BesKUeKw-oU2nKK1MZ8tI/edit?usp=sharing
 
-3. Papers
+Papers
 
 Our papers on Breeze Graph Grammar and Breeze/ADL are available at: 
 
