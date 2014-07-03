@@ -70,7 +70,7 @@ Resources
 1. Demo
 
 A demo of Breeze is available at:
-https://www.youtube.com/watch?v=nVYJZahZCAo&feature=youtu.be Note that the Breeze is not open-source. 
+https://www.youtube.com/watch?v=nVYJZahZCAo&feature=youtu.be . 
 
 2. Slides
 
