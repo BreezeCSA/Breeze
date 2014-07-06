@@ -34,8 +34,9 @@ After restart the Eclipse, select File>>New>>Other and you will see:
 You can also see:http://www.rcp-vision.com/?p=1476&lang=en for GMF installation.
 
  After the installation, you need to import five projects including: dom4j_test, org.jfree.jfreeForRCP, org.sjtu.radlab.breeze.diagram, org.sjtu.radlab.breeze.launch.macos, org.sjtu.radlab.breeze.model and org.sjtu.radlab.breeze.model.edit into Eclipse. Then run org.sjtu.radlab.breeze.diagram as Eclipse Application.
+ 
 Architecture Modelling
-
+======
  In order to illustrate how Breeze models the static and dynamic aspects of the software architecture, we explain the key steps here.
 
 Create a New Project
