@@ -20,9 +20,9 @@ Requirements
 
 Installation
 ======
-1. Here is the source code of Breeze, you can also download the executable version running on windows from: https://github.com/BreezeCSA/Breeze-executable-version.
+Here is the source code of Breeze, you can also download the executable version running on windows from: https://github.com/BreezeCSA/Breeze-executable-version.
 
-2. To install Breeze, your computer need install JDK and Eclipse. We recommend you to install JDK 1.7.0 and Eclipse for RCP and RAP Developers Version: Kepler Service Release 1 to avoid version errors. Your Eclipse also need to install another framework, Graphical Modeling Framework (GMF). To use GMF, we need to install the GMF Tooling component; the fastest and easiest way to do this is to select (from main menu of our Eclipse installation) Help >> Install Modeling Components. 
+To install Breeze, your computer need install JDK and Eclipse. We recommend you to install JDK 1.7.0 and Eclipse for RCP and RAP Developers Version: Kepler Service Release 1 to avoid version errors. Your Eclipse also need to install another framework, Graphical Modeling Framework (GMF). To use GMF, we need to install the GMF Tooling component; the fastest and easiest way to do this is to select (from main menu of our Eclipse installation) Help >> Install Modeling Components. 
 
 ![Image text](http://static.oschina.net/uploads/space/2012/1023/164709_UW3i_164134.png)
 
@@ -33,10 +33,10 @@ After restart the Eclipse, select File>>New>>Other and you will see:
 
 You can also see:http://www.rcp-vision.com/?p=1476&lang=en for GMF installation.
 
-3. After the installation, you need to import five projects including: dom4j_test, org.jfree.jfreeForRCP, org.sjtu.radlab.breeze.diagram, org.sjtu.radlab.breeze.launch.macos, org.sjtu.radlab.breeze.model and org.sjtu.radlab.breeze.model.edit into Eclipse. Then run org.sjtu.radlab.breeze.diagram as Eclipse Application.
+ After the installation, you need to import five projects including: dom4j_test, org.jfree.jfreeForRCP, org.sjtu.radlab.breeze.diagram, org.sjtu.radlab.breeze.launch.macos, org.sjtu.radlab.breeze.model and org.sjtu.radlab.breeze.model.edit into Eclipse. Then run org.sjtu.radlab.breeze.diagram as Eclipse Application.
 Architecture Modelling
 
-4. In order to illustrate how Breeze models the static and dynamic aspects of the software architecture, we explain the key steps here.
+ In order to illustrate how Breeze models the static and dynamic aspects of the software architecture, we explain the key steps here.
 
 Create a New Project
 ======
