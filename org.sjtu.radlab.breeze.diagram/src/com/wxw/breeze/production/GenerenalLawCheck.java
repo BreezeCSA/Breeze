@@ -108,9 +108,9 @@ public class GenerenalLawCheck {
         return document;
      }
     public void traversalDocumentByIterator() {
-    	ConsoleFactory.getConsole().clearConsole();
+    
     	
-    	Boolean mmark=true;
+    	
     	HighLight_s hls=new HighLight_s(null);
     	hls.exe_cancle();
         Element root= getRootElement();
@@ -179,14 +179,13 @@ public class GenerenalLawCheck {
         			int s_port_t=nd[s_node_id].pt[s_port_id].direction;//源端口类型
         			int t_port_t=nd[t_node_id].pt[t_port_id].direction;//目标端口类型
         			
-        		 
+        			
         			if((s_port_t==0&&t_port_t==0)||(s_port_t==1&&t_port_t==1)||(s_port_t==0&&t_port_t==2)||(s_port_t==1&&t_port_t==2)||(s_port_t==2&&t_port_t==0||(s_port_t==2&&t_port_t==1)))
         			{
         				HighLight_s h1=new HighLight_s(nd[s_node_id].pt[s_port_id].id);
         				HighLight_s h2=new HighLight_s(nd[t_node_id].pt[t_port_id].id);
         				h1.exe();
         				h2.exe();
-        				mmark=false;
         				String cmd="The port direction between "+nd[s_node_id].name+" and "+nd[t_node_id].name+" are mismatch.";
         				ConsoleUtil.printMessage(ConsoleFactory.getConsole(), cmd+ "\n");//Display.getDefault().asyncExec(new ConsolePrinter(cmd + "\n", ConsolePrinter.TYPE_MESSAGE));
         			}
@@ -220,7 +219,7 @@ public class GenerenalLawCheck {
         				}
         				else
         					t_node_type="Connector";
-        				mmark=false;
+        					
         				String cmd=s_node_type+" "+nd[s_node_id].name+" should not connect with "+t_node_type+" "+nd[t_node_id].name+" directly.";
         				ConsoleUtil.printMessage(ConsoleFactory.getConsole(), cmd+ "\n");//Display.getDefault().asyncExec(new ConsolePrinter(cmd + "\n", ConsolePrinter.TYPE_MESSAGE));
         				HighLight_s h1=new HighLight_s(nd[s_node_id].id);
@@ -241,17 +240,17 @@ public class GenerenalLawCheck {
 			if(nd[i].type==0)
 			{
 				if(nd[i].port_num!=2)
-				{	mmark=false;
+				{
 					String cmd="The port of Connector "+nd[i].name+" are mismatch(There shoule be 2 ports attach to one connector!!).";
     				ConsoleUtil.printMessage(ConsoleFactory.getConsole(), cmd+ "\n");
     				HighLight_s h1=new HighLight_s(nd[i].id);
     				h1.exe();
     			}
 				else{
-						
+				
 						int d1=nd[i].pt[0].direction,d2=nd[i].pt[1].direction;
 						if((d1==d2&&d1!=2)||(d1!=d2&&((d1==1&&d2==2)||(d1==0&&d2==2)||(d1==2&&d2==0)||(d1==2&&d2==1))))
-						{mmark=false;
+						{
 							String cmd="The port of Connector "+nd[i].name+" are mismatch(The ports should be one in and one out or both inout!!).";
 		    				ConsoleUtil.printMessage(ConsoleFactory.getConsole(), cmd+ "\n");
 		    				HighLight_s h1=new HighLight_s(nd[i].id);
@@ -261,14 +260,47 @@ public class GenerenalLawCheck {
 					
 				}
 			}
-			
+				
 		}
         
         
-    	if(mmark)
-			ConsoleUtil.printMessage(ConsoleFactory.getConsole(), "The architecture meets the common constraint requirements !! "+ "\n");
-		
+   
+        
+        // 枚举根节点下所有子节点
+//        for (Iterator ie = root.elementIterator(); ie.hasNext();) {
+//            System.out.println("======");
+//            Element element = (Element) ie.next();
+//            System.out.println(element.getName());
+//  
+//            // 枚举属性
+//            for (Iterator ia = element.attributeIterator(); ia.hasNext();) {
+//               Attribute attribute = (Attribute) ia.next();
+//               System.out.println(attribute.getName() + ":"
+//                      + attribute.getData());
+//            }
+//            // 枚举当前节点下所有子节点
+//            for (Iterator ieson = element.elementIterator(); ieson.hasNext();) {
+//               Element elementSon = (Element) ieson.next();
+//               System.out.println(elementSon.getName() + ":"
+//                      + elementSon.getText());
+//            }
+//        }
         
      }
-
+//    public void getElementList(Element element) { 
+//        List elements = element.elements(); 
+//        if (elements.size() == 0) { 
+//            //没有子元素 
+//            String xpath = element.getPath(); 
+//            String value = element.getTextTrim();  
+//        } else { 
+//            //有子元素 
+//            for (Iterator it = elements.iterator(); it.hasNext();) { 
+//                Element elem = (Element) it.next(); 
+//                //递归遍历 
+//                getElementList(elem); 
+//            } 
+//        } 
+//    } 
+//}
 }
