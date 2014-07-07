@@ -12,14 +12,20 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPar
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramColorRegistry;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.FillStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.SWTException;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.RGB;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 
 import BreezeModel.diagram.edit.commands.LinkCreateCommand;
@@ -119,72 +125,12 @@ public void exe_cancle()
 {
 
 			Object o=PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-			//Object ppp=PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
-
-			
-			
-			
-//			BreezeEditPart  testEditPart =(BreezeEditPart) ((BreezeDiagramEditor) o).getDiagramEditPart();			
-//			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(testEditPart.getEditingDomain());
-//			final View testView = (View) testEditPart.getModel();// 某个节点的view
-//			BreezeDiagramEditor diagramEditor = (BreezeDiagramEditor) o;
-//			IDiagramGraphicalViewer viewer = diagramEditor.getDiagramGraphicalViewer();
-//			Object obb=viewer.getEditPartRegistry();
-//			
-//			final List<LinkEditPart> ooo=viewer.findEditPartsForElement("_Wr9e0PoiEeOLY_r3ye6FbA", LinkEditPart.class);//e.g., get with viewer.findEditPartsForElement() or viewer.getEditPartRegistry()		
-//			LinkEditPart lep=ooo.get(0);
-//			final View l_view=(View)lep.getModel();
-//			final LinkImpl l_impl=(LinkImpl) l_view.getElement();
-//			final BreezeImpl breezeImpl = (BreezeImpl) testView.getElement(); // 某个节点的model
-//			domain.getCommandStack().execute(new RecordingCommand(domain) {
-//								protected void doExecute() {
-//									ViewUtil.destroy(l_view); // 删除此节点的view  ViewUtil.destroy(ViewUtil.getChildByIdStr(testView, lep.));
-//								 	breezeImpl.getArch().getEdge().remove(l_impl); // 删除此节点的model
-//								}
-//							});
-			
-			
-			
 			if(o instanceof BreezeDiagramEditor){
 				
 			RootEditPart rootEditPart = ((DiagramEditor) o).getDiagramEditPart().getRoot();
-		//	LinkEditPart lp=new LinkEditPart(rootEditPart);
 			List<EditPart> parts = rootEditPart.getChildren();
 			for (EditPart ep : parts) {
 
-
-//				BreezeDiagramEditor diagramEditor = (BreezeDiagramEditor) o;
-//				IDiagramGraphicalViewer viewer = diagramEditor.getDiagramGraphicalViewer();
-//				Object obb=viewer.getEditPartRegistry();
-//				List<LinkEditPart> ooo=viewer.findEditPartsForElement("_Wr9e0PoiEeOLY_r3ye6FbA", LinkEditPart.class);//e.g., get with viewer.findEditPartsForElement() or viewer.getEditPartRegistry()
-//				LinkEditPart editpart=ooo.get(0);
-//				EditingDomain editingDomain = diagramEditor.getEditingDomain();
-//				Object obj=editingDomain.getChildren(Object.class);
-//				editingDomain.getCommandStack().execute(RemoveCommand.create(editingDomain, editpart.getModel()));
-				
-				
-				//TransactionalEditingDomain domain = TransactionUtil.getEditingDomain((BreezeDiagramEditor) o);
-//				BreezeEditPart  testEditPart =(BreezeEditPart) ((BreezeDiagramEditor) o).getDiagramEditPart();
-//				
-//				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(testEditPart.getEditingDomain()); // 图的model的editingDomain
-//				final View testView = (View) testEditPart.getModel(); // 连线依赖的节点的View
-
-//				BreezeImpl breezeImpl = (BreezeImpl) testView.getElement(); // 连线依赖的节点的model
-//				 final List<Object> incomingList = testView.getTransientChildren(); // 此节点上的所有连线
-//				int incomingSize = incomingList.size();
-//				for (int j = incomingSize - 1; j >= 0; j--) {
-//					domain.getCommandStack().execute(new RecordingCommand(domain) {
-//						protected void doExecute() {
-//							Edge edge = (Edge) incomingList.get(j); // 连线的view
-//							if (edge.getElement() instanceof LinkImpl) {
-//				                             LinkImpl linkImpl = (LinkImpl) edge.getElement(); // 连线的model
-//							     ViewUtil.destroy(edge); // 删除连线的view
-//							     xxxDiagramImpl.getLinks().remove(linkImpl); // 删除连线的model
-//							}
-//					}
-//					}
-//					);
-//				}
 				
 				List<ArchEditPart> d_parts=ep.getChildren(); 
 				for(Object aep : d_parts)
@@ -195,8 +141,7 @@ public void exe_cancle()
 					for(Object anep : d_d_parts)
 					{
 						if(anep instanceof ArchContentCompartmentEditPart)
-						{
-//							
+						{					
 							
 							List<AbstractBorderedShapeEditPart> d_d_d_parts=((ArchContentCompartmentEditPart) anep).getChildren();
 							int countt=0;
@@ -213,19 +158,13 @@ public void exe_cancle()
 								
 							
 							 if(cep instanceof ComponentEditPart)
-							 {
-								 
-							 		RGB rgb=new RGB(255,255,255); 
-									Color cl=new Color(null,rgb);
-									((ComponentEditPart) cep).setBackgroundColor(cl);
+							 {								
+									((ComponentEditPart) cep).refresh();
 							 }
 							 if(cep instanceof ConnectorEditPart)
 								
 								 	{
-										RGB rgb=new RGB(255,255,255); 
-										Color cl=new Color(null,rgb);
-										((ConnectorEditPart) cep).setBackgroundColor(cl);
-
+										((ConnectorEditPart) cep).refresh();
 								 	}
 							
 							 List<Object> d_d_d_d_parts=cep.getChildren();
@@ -234,15 +173,11 @@ public void exe_cancle()
 								if(pep instanceof PortEditPart)
 							
 								 {
-									RGB rgb=new RGB(255,255,255);  
-										Color cl=new Color(null,rgb);
-										((PortEditPart)pep).setBackgroundColor(cl);
+										((PortEditPart)pep).refresh();
 								 }
 							 }
 							}
-						//	Object oob=new LinkCreateCommand((BreezeDiagramEditor)o,oo1,oo2);
 						}
-						
 				      }
 					}
 				}

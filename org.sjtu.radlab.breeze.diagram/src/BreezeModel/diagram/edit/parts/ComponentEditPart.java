@@ -1,9 +1,21 @@
 package BreezeModel.diagram.edit.parts;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.PositionConstants;
@@ -11,13 +23,24 @@ import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
+import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gef.ui.parts.GraphicalEditor;
+import org.eclipse.gmf.runtime.common.core.util.StringStatics;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -25,7 +48,14 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPo
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.figures.DiagramColorConstants;
+import org.eclipse.gmf.runtime.diagram.ui.internal.properties.Properties;
+import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
+import org.eclipse.gmf.runtime.diagram.ui.requests.ChangePropertyValueRequest;
+import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
@@ -34,6 +64,22 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.draw2d.CenterLayout;
 import org.eclipse.gmf.tooling.runtime.edit.policies.reparent.CreationEditPolicyWithCustomReparent;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.RGB;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PlatformUI;
+
+import com.wxw.breeze.production.HighLight;
+import com.wxw.breeze.production.Properties_Copy;
+import com.wxw.breeze.production.architecture;
+
+import BreezeModel.Component;
+import BreezeModel.Port;
+import BreezeModel.diagram.part.BreezeDiagramEditor;
+import BreezeModel.impl.BreezeImpl;
+import BreezeModel.impl.ComponentImpl;
+import BreezeModel.impl.NodeInstanceImpl;
+import BreezeModel.impl.NodeTemplateImpl;
 
 /**
  * @generated
@@ -50,7 +96,7 @@ public class ComponentEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public static final int VISUAL_ID = 3005;
-
+//	public static View view=null;
 	/**
 	 * @generated
 	 */
@@ -65,9 +111,97 @@ public class ComponentEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	public ComponentEditPart(View view) {
+		
 		super(view);
+		
 	}
-
+	protected void handleNotificationEvent(Notification notification) {
+		if (notification.getNotifier() instanceof Component) {
+			if (((View) this.getModel()).getElement() instanceof Component) {
+				Component component = (Component) (((View) this.getModel()).getElement());
+				NodeTemplateImpl nti=(NodeTemplateImpl) component.getTR();
+				 ComponentEditPart edp=(ComponentEditPart) BreezeModel.diagram.part.BreezeDiagramEditor.selectedEditPart;
+				 Color col=findcolor_name(nti.getName()); 
+				 edp.setBackgroundColor(col);
+				 
+				 ChangePropertyValueRequest req = new ChangePropertyValueRequest( 
+					        StringStatics.BLANK,Properties.ID_FILLCOLOR,
+					    FigureUtilities.colorToInteger(col));
+				 final Command cmd = edp.getCommand(req);
+				cmd.execute();
+				}
+		}
+		super.handleNotificationEvent(notification);
+	}
+	public Color findcolor_name(String tem_id)
+	{
+		
+		
+		
+		Object o=PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		if(o instanceof BreezeDiagramEditor){			
+		EObject list =((DiagramDocumentEditor) o).getDiagram().getElement();
+		RootEditPart rootEditPart = ((DiagramEditor) o).getDiagramEditPart().getRoot();
+		EList<EObject> elist = list.eContents(); 
+		List<EditPart> parts = rootEditPart.getChildren();
+		for (EditPart ep : parts) {
+			List<StyleEditPart> d_parts=ep.getChildren();
+			for(Object aep : d_parts)
+			{
+				if(aep instanceof StyleEditPart){
+				List<StyleEditPart> d_d_parts=((StyleEditPart)aep).getChildren();
+				
+				for(Object anep : d_d_parts)
+				{
+					if(anep instanceof StyleStyleCompartmentEditPart)
+					{
+						List<StyleStyleCompartmentEditPart> d_d_d_parts=((StyleStyleCompartmentEditPart) anep).getChildren();
+						for(Object aneps: d_d_d_parts)
+						{
+							if(aneps instanceof TemplateEditPart)
+							{
+								List<TemplateEditPart> d_d_d_d_parts=((TemplateEditPart) aneps).getChildren();
+								for(Object anepss: d_d_d_d_parts)
+								{
+									if(anepss instanceof TemplateTemplateCompartmentEditPart)
+									{
+										List<NodeTemplateEditPart> d_d_d_d_d_parts=((TemplateTemplateCompartmentEditPart) anepss).getChildren();
+										for(Object anepsss: d_d_d_d_d_parts)
+										{
+											if(anepsss instanceof NodeTemplateEditPart)
+											{
+												List<NodeTemplateNameEditPart> d_d_d_d_d_d_parts=((NodeTemplateEditPart) anepsss).getChildren();
+												for(NodeTemplateNameEditPart anepssss: d_d_d_d_d_d_parts)
+												{
+													//if(((NodeTemplateEditPart)anepssss))
+ 													Object oobbc= anepssss.getFigure();
+ 													if(oobbc.toString().equals(tem_id)){
+ 														Object oobbjec=((NodeTemplateEditPart) anepsss).getFigure();
+ 														return ((NodeTemplateEditPart) anepsss).getContentPane().getBackgroundColor();
+ 													}
+												}
+												
+											}
+										}
+									}
+								}
+									}
+							}
+							
+						}
+					
+					}
+				}
+				}
+			}
+		
+			}
+		
+		return null;
+	
+		
+	}
+	
 	/**
 	 * @generated
 	 */
@@ -255,6 +389,7 @@ public class ComponentEditPart extends AbstractBorderedShapeEditPart {
 	public void setBackgroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setBackgroundColor(color);
+		 	// BreezeModel.diagram.edit.parts.NodeTemplateEditPart.ComponentFigure cs=new ComponentShape();
 		}
 	}
 

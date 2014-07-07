@@ -8,6 +8,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocumentProvider;
@@ -43,8 +44,8 @@ public class BreezeDiagramEditor extends DiagramDocumentEditor {
 	public static final String ID = "BreezeModel.diagram.part.BreezeDiagramEditorID"; //$NON-NLS-1$
 
 	public static String selectedPath;
-
-	public static ShapeImpl selectedShape = null;
+	public static AbstractBorderedShapeEditPart selectedEditPart=null;
+	//public static ShapeImpl selectedShape = null;
 
 	public static String getSelectedPath() {
 		return selectedPath;
@@ -80,13 +81,18 @@ public class BreezeDiagramEditor extends DiagramDocumentEditor {
 		if (obj instanceof URIEditorInput) {
 			URIEditorInput input = (URIEditorInput) obj;
 			String[] segments = input.getURI().segments();
+			String trs=input.getURI().path();
+			Boolean mark_pro=false;
+			if(trs.indexOf("_production")!=-1&&trs.indexOf("_diagram")!=-1)
+				mark_pro=true;
 			if (segments.length - 2 >= 0) {
 				if (BreezeGk.SAFETY.equals(segments[segments.length - 2])) {
 					root.add(factory.createArchitectureStyle4Group());
 					return root;
 				}
-				if (segments.length>=4&&segments[4].indexOf("production") != -1) {
-					factory.fillPalette_s(root);
+				//if (segments.length>=4&&segments[5].indexOf("production") != -1) {
+				if(mark_pro){	
+				factory.fillPalette_s(root);
 					
 					return root;
 				}
@@ -179,6 +185,10 @@ public class BreezeDiagramEditor extends DiagramDocumentEditor {
 		if (selection instanceof StructuredSelection) {
 			StructuredSelection structSelection = (StructuredSelection) selection;
 			Object element = structSelection.getFirstElement();
+			if (element instanceof AbstractBorderedShapeEditPart)
+			{
+				selectedEditPart=(AbstractBorderedShapeEditPart) element;
+			}
 			if (element instanceof ArchEditPart) {
 				ArchEditPart aep = (ArchEditPart) element;
 				ShapeImpl si = (ShapeImpl) aep.getModel();

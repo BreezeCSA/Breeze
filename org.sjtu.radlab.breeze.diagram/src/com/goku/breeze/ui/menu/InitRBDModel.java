@@ -57,11 +57,11 @@ public class InitRBDModel implements IObjectActionDelegate {
 		//				}
 		//			}
 		//		}
-		System.out.println("rbdActive");
-		String safetyModelFile = InitModelUtil.copy(this.selectedPath, BreezeGk.RELIABILITY);
+//		System.out.println("rbdActive");
+		String safetyModelFile = InitModelUtil.copy(this.selectedPath, BreezeGk.RELIABILITY+"\\RBD");
 		if (safetyModelFile == null)
 			return;
-		String safetyFileString = safetyModelFile.substring(0, safetyModelFile.length() - "breeze".length())
+		String safetyFileString = safetyModelFile.substring(0, safetyModelFile.length() - "breeze".length()-"_production.".length())+"."
 				+ "rbd_model";
 		BreezeModel2SARBD instance = new BreezeModel2SARBD();
 		try {

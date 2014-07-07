@@ -57,7 +57,7 @@ public class HighLight {
         	{
         		mark=true;
         	}
-        	;
+        	
         	if(tp.attributeValue("type").toString().indexOf("Link")!=-1)
         		type="Link";
         	else

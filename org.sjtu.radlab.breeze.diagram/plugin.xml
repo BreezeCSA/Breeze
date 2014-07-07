@@ -1170,6 +1170,18 @@
                 name="aboutImage"
                 value="breeze48.png">
           </property>
+          <property
+                name="startupForegroundColor"
+                value="00FF00">
+          </property>
+          <property
+                name="startupMessageRect"
+                value="7,252,445,20">
+          </property>
+          <property
+                name="preferenceCustomization"
+                value="plugin_customization.ini">
+          </property>
        </product>
     </extension>
     <extension
@@ -1178,10 +1190,6 @@
              class="org.sjtu.radlab.breeze.diagram.splashHandlers.ExtensibleSplashHandler"
              id="org.sjtu.radlab.breeze.diagram.splashHandlers.extensible">
        </splashHandler>
-       <splashHandlerProductBinding
-             productId="org.sjtu.radlab.breeze.diagram.Breeze"
-             splashId="org.sjtu.radlab.breeze.diagram.splashHandlers.extensible">
-       </splashHandlerProductBinding>
     </extension>
     <extension
           point="org.sjtu.radlab.breeze.diagram.splashExtension">
