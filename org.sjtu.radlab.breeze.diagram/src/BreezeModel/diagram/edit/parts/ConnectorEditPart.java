@@ -14,6 +14,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.impl.EReferenceImpl;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
@@ -120,22 +121,31 @@ public class ConnectorEditPart extends AbstractBorderedShapeEditPart {
 	
 	
 	protected void handleNotificationEvent(Notification notification) {
-		if (notification.getNotifier() instanceof Connector) {
-			if (((View) this.getModel()).getElement() instanceof Connector) {
-				Connector component = (Connector) (((View) this.getModel()).getElement());
-				NodeTemplateImpl nti=(NodeTemplateImpl) component.getTR();
-				ConnectorEditPart edp=(ConnectorEditPart) BreezeModel.diagram.part.BreezeDiagramEditor.selectedEditPart;
-				 Color col=findcolor_name(nti.getName()); 
-				 edp.setBackgroundColor(col);
-				 
-				 ChangePropertyValueRequest req = new ChangePropertyValueRequest( 
-					        StringStatics.BLANK,Properties.ID_FILLCOLOR,
-					    FigureUtilities.colorToInteger(col));
-				 final Command cmd = edp.getCommand(req);
-				cmd.execute();
-				}
-		}
 		super.handleNotificationEvent(notification);
+		Object oob=notification.getFeature();
+		super.handleNotificationEvent(notification);
+		if(oob instanceof EReferenceImpl)
+		{
+			if(((EReferenceImpl)oob).getName().equals("TR"))
+			{
+				if (notification.getNotifier() instanceof Connector) {
+					if (((View) this.getModel()).getElement() instanceof Connector) {
+						Connector component = (Connector) (((View) this.getModel()).getElement());
+						NodeTemplateImpl nti=(NodeTemplateImpl) component.getTR();
+						ConnectorEditPart edp=(ConnectorEditPart) BreezeModel.diagram.part.BreezeDiagramEditor.selectedEditPart;
+						 Color col=findcolor_name(nti.getName()); 
+						 edp.setBackgroundColor(col);
+						 
+						 ChangePropertyValueRequest req = new ChangePropertyValueRequest( 
+							        StringStatics.BLANK,Properties.ID_FILLCOLOR,
+							    FigureUtilities.colorToInteger(col));
+						 final Command cmd = edp.getCommand(req);
+						cmd.execute();
+						}
+					}
+			}
+		}
+	
 	}
 	public Color findcolor_name(String tem_id)
 	{

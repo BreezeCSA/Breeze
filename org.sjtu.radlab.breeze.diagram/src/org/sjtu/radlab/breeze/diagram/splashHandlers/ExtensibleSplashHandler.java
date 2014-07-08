@@ -303,6 +303,6 @@ public class ExtensibleSplashHandler extends AbstractSplashHandler {
 		while (iterator.hasNext()) {
 			Image image = (Image) iterator.next();
 			image.dispose();
-		}
+ 		}
 	}
 }
