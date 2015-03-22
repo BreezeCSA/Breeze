@@ -1,16 +1,8 @@
 Introduction
 ======
-Breeze is a scalable, visual, rule-supported modeling tool for software architecture (SA) based on Eclipse framework, which provides multi-views for architecture designers to create, edit and verify the SA of a system. Breeze is based on Breeze/ADL proposed by our group [citation], and can be applied to large, complex software systems. Breeze can capture both static architecture specifications and dynamic reconfigurations, in terms of Breeze/ADL definitions. Breeze provides symbolic features to model typical SA elements (e.g., component, connector and link). Based on this, the style (e.g., C-S) for SA can be verified and constrained. Moreover, Breeze supports the production definition to specify the architecture evolution. The production derives from the graph rewriting rules in the graph transformation. A production is divided into two parts, that is, left hand side (LHS) and right hand side (RHS). The LHS represents the precondition and RHS means the results. If there is a part of architecture model satisfying the LHS then this part should be replaced by the RHS. By leveraging the production, Breeze provides some classical operations, like addition and removal, to implement the architecture reconfiguration. Breeze consists of five modules: 
+Breeze is a editable, visual, rule-supported modeling tool for software architecture (SA) based on Eclipse framework, which provides multi-views for architecture designers to create, edit and verify the SA of a system. Breeze is based on Breeze/ADL proposed by our group [citation], and can be applied to large, complex software systems. Breeze can capture both static architecture specifications and dynamic reconfigurations, in terms of Breeze/ADL definitions. Breeze provides symbolic features to model typical SA elements (e.g., component, connector and link). Based on this, the style (e.g., C-S) for SA can be verified and constrained. Moreover, Breeze is able to implement non-functional attribute analysis, including reliability analysis, safety analysis and correctness analysis on the architecture.
 
-
-1. Editor provides text editor which enables creating and manipulating the architecture model, properties and productions. 
-2. Parser includes model parser and rule parser. Model parser is used to parse the xml based Breeze/ADL document into internal representations. The rule parser parses each production into two internal representations - LHS and RHS.
-
-3. Viewer provides user friendly viewers which include both design and explorer viewer for architect. 
-
-4. Matcher is capable of checking if there exist some parts of the architecture model matching the LHS of a rule. 
-
-5. Executor implements these dynamic operations.
+Breeze also supports the production definition to specify the architecture evolution. The production derives from the graph rewriting rules in the graph transformation. A production is divided into two parts, that is, left hand side (LHS) and right hand side (RHS). The LHS represents the precondition and RHS means the results. If there exist architectural specifications that satisfy LHS definitions, then this part will be replaced by the RHS definitions. By leveraging the production, Breeze provides some classical operations, like addition and removal, to implement the architecture reconfiguration. 
 
 Requirements
 ======
@@ -20,7 +12,6 @@ Requirements
 
 Installation
 ======
-Here is the source code of Breeze, you can also download the executable version running on windows from: https://github.com/BreezeCSA/Breeze-executable-version.
 
 To install Breeze, your computer need install JDK and Eclipse. We recommend you to install JDK 1.7.0 and Eclipse for RCP and RAP Developers Version: Kepler Service Release 1 to avoid version errors. Your Eclipse also need to install another framework, Graphical Modeling Framework (GMF). To use GMF, we need to install the GMF Tooling component; the fastest and easiest way to do this is to select (from main menu of our Eclipse installation) Help >> Install Modeling Components. 
 
@@ -68,6 +59,16 @@ As we mentioned before, Breeze currently supports the constraint verification in
 1. Common Constraint verification: There are some common constraints need to be satisfied. For example, port direction should match and the communication between the components should be through connector. To do the verification, designer needs to right click on the ‘.breeze’ file and chooses the ‘Constraint Check/Common Constraint Check’. If the architecture model does not pass the verification, Breeze will highlight the wrong elements and show the error messages.
 
 2. Style Verification: Each architecture has its own style constraints. Currently, we support the Client/Server style verification. There are two constraints that the Client/Server style should subject to, i.e., clients cannot communication with each other directly and the direction of the request should from client to server.
+ 
+Architecture analysis
+======
+To integrate non-funtional attribute analysis, a TrustConfiguration meta-model will first be generated based on Breeze/ADL architectural specifications. By right click on the ‘.breeze’ file, choose "Initialize model" and then choose an attribute to be analyzed.
+
+Currently, Breeze has integrated plugins that support following attributes: 
+1.	Correctness checking: generating model checking specifications to detect deadlock or inconsistency problems in
+the architecture design.
+2 Fault tree analysis (FTA): weaving safety elements defined in requirements into Breeze/ADL to implement analysis towards failure events.
+3 Reliability analysis: mapping Breeze/ADL model to a Markov Chain model to conduct DTMC (Discrete-Time Markov Chain) reliability prediction.
 
 Reconfiguration
 ======
@@ -77,10 +78,10 @@ To create a production, designer needs to right click the ‘Constraint Check/In
 
 Resources
 ======
+
 Demo
 
-A demo of Breeze is available at:
-https://www.youtube.com/watch?v=nVYJZahZCAo&feature=youtu.be . 
+A demo of Breeze is available at:. 
 
 Slides
 
