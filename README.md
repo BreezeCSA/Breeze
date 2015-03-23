@@ -69,9 +69,9 @@ Currently, Breeze has integrated plugins that support following attributes:
 1.	Correctness checking: generating model checking specifications to detect deadlock or inconsistency problems in
 the architecture design.
 
-2 Fault tree analysis (FTA): weaving safety elements defined in requirements into Breeze/ADL to implement analysis towards failure events.
+2.	Fault tree analysis (FTA): weaving safety elements defined in requirements into Breeze/ADL to implement analysis towards failure events.
 
-3 Reliability analysis: mapping Breeze/ADL model to a Markov Chain model to conduct DTMC (Discrete-Time Markov Chain) reliability prediction.
+3.	 Reliability analysis: mapping Breeze/ADL model to a Markov Chain model to conduct DTMC (Discrete-Time Markov Chain) reliability prediction.
 
 Reconfiguration
 ======
