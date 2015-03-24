@@ -64,7 +64,7 @@ Architecture analysis
 ======
 To integrate non-funtional attribute analysis, a TrustConfiguration meta-model will first be generated based on Breeze/ADL architectural specifications. By right click on the ‘.breeze’ file, choose "Initialize model" and then choose an attribute to be analyzed.
 
-![Image text](http://r.photo.store.qq.com/psb?/19ee4002-3d96-449b-b7f1-708fac6d26c0/jNBuyg6OAEfumKt*YUkeWIEDb5*2KxoHPwe7HCSli.w!/o/dADrKuDbMwAA&ek=1&kp=1&pt=0&bo=sASAAt4FIQMDAOo!&su=148589969&sce=0-12-12&rf=2-9)
+![Image text](http://r.photo.store.qq.com/psb?/19ee4002-3d96-449b-b7f1-708fac6d26c0/NyFCC479UZOQ5G46YFVp1TePQCA0Qfz6MgHD0BoW7do!/o/dPAlIODtMwAA&ek=1&kp=1&pt=0&bo=sgSAAt4FIAMDAOk!&su=1212477457&sce=0-12-12&rf=2-9)
 
 Currently, Breeze has integrated plugins that support following attributes: 
 
@@ -79,7 +79,7 @@ Reconfiguration
 ======
 The architecture reconfiguration is achieved through the production. Production can be divided into two parts, that is, left hand side (LHS) and right hand side (RHS). The LHS represents the precondition and RHS means the results, i.e., if there is a part of architecture model satisfying the LHS then this part should be replaced by the RHS. Leveraging the production, some operations, like addition and removal, can be applied to the software architecture, and implement the architecture reconfiguration.
 
-![Image text](http://r.photo.store.qq.com/psb?/19ee4002-3d96-449b-b7f1-708fac6d26c0/5VNRw.NWWnDQg9LoIPPyQL8MPvcjwnh42WB3kmCxlr4!/o/dBTSJ.DpMwAA&ek=1&kp=1&pt=0&bo=sASAAt4FIQMDAOo!&su=1102686289&sce=0-12-12&rf=2-9）
+![Image text](http://r.photo.store.qq.com/psb?/19ee4002-3d96-449b-b7f1-708fac6d26c0/5VNRw.NWWnDQg9LoIPPyQL8MPvcjwnh42WB3kmCxlr4!/o/dBTSJ.DpMwAA&ek=1&kp=1&pt=0&bo=sASAAt4FIQMDAOo!&su=1102686289&sce=0-12-12&rf=2-9)
 
 To create a production, designer needs to right click the ‘Constraint Check/Initialize a production’. Then, two new files will be created at ‘production’ fold. Their names are automatically generated and which are like ‘xxx_production.breeze’ and ‘xxx_production.breeze_diagram’. Open the ’ xxx_production.breeze_diagram’, designer clicks the ‘production’ at the Palette and then clicks on ‘Style’ box (breeze reuses the style box for the production) on the design panel to create a new production. On the property editor, designer can customize the properties for the production, like production name. Each production includes two boxes, that is, LHS and RHS box. Designer needs to create two sub-architectures for the LHS and RHS box respectively. The LHS and RHS box use a set of components, connectors and links to form precondition and result separately. To apply a production, designer needs to right click the production box and click ‘Apply Production’. If part of the architecture model does match the LHS sub-architecture, Breeze will use RHS sub-architecture to replace the corresponding part.
 
