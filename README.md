@@ -83,7 +83,7 @@ The architecture reconfiguration is achieved through the production. Production 
 
 To create a production, designer needs to right click the ‘Constraint Check/Initialize a production’. Then, two new files will be created at ‘production’ fold. Their names are automatically generated and which are like ‘xxx_production.breeze’ and ‘xxx_production.breeze_diagram’. Open the ’ xxx_production.breeze_diagram’, designer clicks the ‘production’ at the Palette and then clicks on ‘Style’ box (breeze reuses the style box for the production) on the design panel to create a new production. On the property editor, designer can customize the properties for the production, like production name. Each production includes two boxes, that is, LHS and RHS box. Designer needs to create two sub-architectures for the LHS and RHS box respectively. The LHS and RHS box use a set of components, connectors and links to form precondition and result separately. To apply a production, designer needs to right click the production box and click ‘Apply Production’. If part of the architecture model does match the LHS sub-architecture, Breeze will use RHS sub-architecture to replace the corresponding part.
 
-![Image text](http://r.photo.store.qq.com/psb?/19ee4002-3d96-449b-b7f1-708fac6d26c0/2S*24nfD1K5UrkZM1GrVik3MVtVbQe0pjwubkSq5Vtw!/o/dCFmw.AiNAAA&bo=rwSAAlYF2QIDAIQ!)
+![Image text](http://r.photo.store.qq.com/psb?/19ee4002-3d96-449b-b7f1-708fac6d26c0/.9us4mjXRzHzLkj*ivHkMczntn4UUzJzsZaYLLPweTU!/o/dJp0w.AqNAAA&ek=1&kp=1&pt=0&bo=rQSAAt4FIwMDAPU!&su=1189666161&sce=0-12-12&rf=2-9)
 
 Resources
 ======
