@@ -64,6 +64,8 @@ Architecture analysis
 ======
 To integrate non-funtional attribute analysis, a TrustConfiguration meta-model will first be generated based on Breeze/ADL architectural specifications. By right click on the ‘.breeze’ file, choose "Initialize model" and then choose an attribute to be analyzed.
 
+![Image text](http://r.photo.store.qq.com/psb?/19ee4002-3d96-449b-b7f1-708fac6d26c0/jNBuyg6OAEfumKt*YUkeWIEDb5*2KxoHPwe7HCSli.w!/o/dADrKuDbMwAA&ek=1&kp=1&pt=0&bo=sASAAt4FIQMDAOo!&su=148589969&sce=0-12-12&rf=2-9)
+
 Currently, Breeze has integrated plugins that support following attributes: 
 
 1.	Correctness checking: generating model checking specifications to detect deadlock or inconsistency problems in
