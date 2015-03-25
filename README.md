@@ -90,7 +90,7 @@ Resources
 
 Demo
 
-A demo of Breeze is available at:. 
+A demo of Breeze is available at: https://www.youtube.com/watch?v=umyx8r1dW6c. 
 
 Slides
 
