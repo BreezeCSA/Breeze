@@ -680,6 +680,15 @@ public class breezePackageImpl extends EPackageImpl implements breezePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getTemplate_StyleType() {
+		return (EAttribute)templateEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getProduction() {
 		return productionEClass;
 	}
@@ -896,6 +905,7 @@ public class breezePackageImpl extends EPackageImpl implements breezePackage {
 
 		templateEClass = createEClass(TEMPLATE);
 		createEReference(templateEClass, TEMPLATE__NODE);
+		createEAttribute(templateEClass, TEMPLATE__STYLE_TYPE);
 
 		productionEClass = createEClass(PRODUCTION);
 		createEReference(productionEClass, PRODUCTION__LEFT);
@@ -1025,6 +1035,7 @@ public class breezePackageImpl extends EPackageImpl implements breezePackage {
 
 		initEClass(templateEClass, Template.class, "Template", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getTemplate_Node(), this.getNodeTemplate(), null, "node", null, 0, -1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTemplate_StyleType(), this.getStyleType(), "StyleType", null, 0, 1, Template.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(productionEClass, Production.class, "Production", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProduction_Left(), this.getArch(), null, "left", null, 1, 1, Production.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1060,6 +1071,8 @@ public class breezePackageImpl extends EPackageImpl implements breezePackage {
 		initEEnum(styleTypeEEnum, StyleType.class, "StyleType");
 		addEEnumLiteral(styleTypeEEnum, StyleType.CS);
 		addEEnumLiteral(styleTypeEEnum, StyleType.C2);
+		addEEnumLiteral(styleTypeEEnum, StyleType.PIPE_FILTER);
+		addEEnumLiteral(styleTypeEEnum, StyleType.BLACKBOARD);
 
 		initEEnum(multiAccessEEnum, MultiAccess.class, "MultiAccess");
 		addEEnumLiteral(multiAccessEEnum, MultiAccess.YES);

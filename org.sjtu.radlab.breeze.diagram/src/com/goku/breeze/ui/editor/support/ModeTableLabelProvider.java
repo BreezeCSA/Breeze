@@ -47,6 +47,9 @@ public class ModeTableLabelProvider implements ITableLabelProvider {
 			return bm.getId();
 		case 1:
 			if (CorrectnessEditor.ID.equals(this.type)) return bm.getType();
+		case 2:
+			if(bm.getProperty("tag")!=null)
+				return bm.getProperty("tag").toString();
 		default:
 			Object obj = prop.get(this.propKey[columnIndex]);
 			if (obj != null) return obj.toString();

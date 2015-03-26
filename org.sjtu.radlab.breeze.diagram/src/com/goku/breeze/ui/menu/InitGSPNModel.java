@@ -18,51 +18,23 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
 import com.goku.breeze.common.BreezeGk;
-import com.goku.breeze.util.BreezeModel2SADTMC;
+import com.goku.breeze.ui.editor.SafetyEditor;
+import com.goku.breeze.util.BreezeModel2SAGSPN;
+import com.goku.breeze.util.BreezeModel2SARBD;
 import com.goku.breeze.util.InitModelUtil;
 
-public class InitDTMCModel implements IObjectActionDelegate {
+public class InitGSPNModel implements IObjectActionDelegate {
 	private IPath selectedPath = null;
 	private IWorkbenchPart targetPart = null;
 
 	@Override
 	public void run(IAction action) {
-		// TODO Auto-generated method stub
-		//		if (this.absPath != null && this.selectedFileNames != null) {
-		//			for (int i = 0; i < this.selectedFileNames.length; ++i) {
-		//				if (this.selectedFileNames[i] != null) {
-		//					String fileName = this.absPath + this.selectedFileNames[i];
-		//					if (fileName.endsWith(".breeze")) {
-		//						String saFileName = fileName.substring(0, fileName.length() - "breeze".length())
-		//								+ SafetyEditor.FILE_EXTENSION;
-		//						BreezeModel2SA instance = new BreezeModel2SA();
-		//						try {
-		//							instance.convert(fileName, saFileName);
-		//							ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);
-		//						} catch (UnsupportedEncodingException e) {
-		//							// TODO Auto-generated catch block
-		//							e.printStackTrace();
-		//						} catch (DocumentException e) {
-		//							// TODO Auto-generated catch block
-		//							e.printStackTrace();
-		//						} catch (IOException e) {
-		//							// TODO Auto-generated catch block
-		//							e.printStackTrace();
-		//						} catch (CoreException e) {
-		//							// TODO Auto-generated catch block
-		//							e.printStackTrace();
-		//						}
-		//					}
-		//				}
-		//			}
-		//		}
-		System.out.println("dtmcActive");
-		String safetyModelFile = InitModelUtil.copy(this.selectedPath, BreezeGk.RELIABILITY+ "/Extended DTMC");
+		String safetyModelFile = InitModelUtil.copy(this.selectedPath, BreezeGk.RELIABILITY+"\\GSPN");
 		if (safetyModelFile == null)
 			return;
-		String safetyFileString = safetyModelFile.substring(0, safetyModelFile.length() - "breeze".length())
-				+ "dtmc_model";
-		BreezeModel2SADTMC instance = new BreezeModel2SADTMC();
+		String safetyFileString = safetyModelFile.substring(0, safetyModelFile.length() - "breeze".length()-"_production.".length())+"."
+				+ "gspn_model";
+		BreezeModel2SAGSPN instance = new BreezeModel2SAGSPN();
 		try {
 			instance.convert(safetyModelFile, safetyFileString);
 			ResourcesPlugin.getWorkspace().getRoot().refreshLocal(IResource.DEPTH_INFINITE, null);

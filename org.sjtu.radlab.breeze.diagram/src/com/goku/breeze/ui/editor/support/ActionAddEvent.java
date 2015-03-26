@@ -6,7 +6,6 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 
-
 import com.goku.breeze.common.SafetyAttribute;
 import com.goku.breeze.compiler.main.BreezeXMLParser;
 import com.goku.breeze.compiler.model.BreezeArch;
@@ -55,7 +54,7 @@ public class ActionAddEvent implements SelectionListener {
 		String id = SupportUtil.getDifferentName(nameList);
 		BreezeEvent event = new BreezeEvent(id, this.bxp.getFactory().nextEventNumber(id), "50");
 
-		event.setProperty(SafetyAttribute.EVENT_GATE, SafetyAttribute.EVENT_GATE_AND);
+		event.setProperty(SafetyAttribute.EVENT_GATE, "");
 		event.setProperty(SafetyAttribute.EVENT_TYPE, SafetyAttribute.EVENT_TYPE_ATMOIC);
 		event.setProperty(SafetyAttribute.EVENT_CHILDREN, new HashSet<String>());
 

@@ -55,13 +55,11 @@ public class EventComboSupport extends EditingSupport {
 		switch (this.columnIndex) {
 		case 2:
 			Object type = evt.getProperty(SafetyAttribute.EVENT_TYPE);
-			if (type != null)
-				return type.toString();
+			if (type != null) return type.toString();
 			break;
 		case 3:
 			Object gate = evt.getProperty(SafetyAttribute.EVENT_GATE);
-			if (gate != null)
-				return gate.toString();
+			if (gate != null) return gate.toString();
 			break;
 		}
 		return "";
@@ -76,6 +74,7 @@ public class EventComboSupport extends EditingSupport {
 			Object type = evt.getProperty(SafetyAttribute.EVENT_TYPE);
 			if (type != null && !type.equals(value)) {
 				evt.setProperty(SafetyAttribute.EVENT_TYPE, value.toString());
+				if (value.toString().equals(SafetyAttribute.EVENT_TYPE_ATMOIC)) evt.setProperty(SafetyAttribute.EVENT_GATE, "");
 				this.sme.fireModelChange();
 			}
 			break;

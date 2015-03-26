@@ -10,6 +10,10 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.MessageBox;
+import org.eclipse.ui.PlatformUI;
 
 import BreezeModel.diagram.edit.parts.LinkEditPart;
 import BreezeModel.diagram.part.BreezeDiagramEditor;
@@ -20,7 +24,7 @@ import com.goku.breeze.ui.console.ConsoleUtil;
 public class ProudctionModel {
 	String production_id;
 	public architecture arc;
-	public production[] pru=new production[10];
+	public production[] pru=new production[100];
 	public int pru_num;
 	public String getProduction_id() {
 		return production_id;
@@ -50,7 +54,7 @@ public class ProudctionModel {
 	  public Element getRootElement() {
 	       return getDocument().getRootElement();
 	    }
-	 public void traversalDocumentByProductionID(String pro_id) {
+	 public void traversalDocumentByProductionID(String pro_id) { //安装production id找到相应production 并且执行
 		 Element root= getRootElement();
 		 int mark=1;
 		 Element arch1 = null,style1 = null;
@@ -64,8 +68,6 @@ public class ProudctionModel {
 				 style1=(Element) ie.next();
 	        } 
 		 mark=1;
-	        //Element style1= (Element)((Iterator) root.elements().iterator().next()).next();
-		 	
 		 arc=new architecture(arch1);
 		 pru_num=0;
 		 for (Iterator ie = style1.elementIterator(); ie.hasNext();) {
@@ -84,20 +86,16 @@ public class ProudctionModel {
 	    				 else
 	    					 right=(Element) ie1.next();
 	    		        } 
-//		    		if(left==null)
-//		    			{
-//		    				
-//		    			}
 	    			 pru[pru_num]=new production(new architecture(left),new architecture(right));
 	    			 pru[pru_num].id=tal.attributeValue("id");
 	    			 pru_num++;
 	    		}
 	    		
 	    	}
-		// System.out.println(" ");
+		 if(pro_id!="")
 		 production_exe(pro_id);
 	 }
-	 public void production_exe(String production_id)
+	 public void production_exe(String production_id) //执行production
 	 {		 Boolean left_match=false;
 		 int ts_pro=-1;
 		 for(int i=0;i<pru_num;i++)
@@ -126,6 +124,15 @@ public class ProudctionModel {
 		int num_p=1,pru_left_num=pru[ts_pro].left.num_node;
 		for(int i=0;i<pru[ts_pro].left.num_node;i++)			
 			num_p=num_p*mmark[i][0];
+		if(num_p==0)
+		{
+			MessageBox msgDlg = new MessageBox(Display.getCurrent().getActiveShell(), SWT.ICON_INFORMATION | SWT.OK);
+			msgDlg.setMessage("The  left pattern of the produciton can not be found in the architecture!!");
+			msgDlg.setText("Initialization:");
+			msgDlg.open();
+		
+		}
+		Boolean exe_mark=false;
 		for(int i=0;i<num_p;i++)
 		{ 
 			int[] ddata=new int[pru_left_num];
@@ -169,6 +176,7 @@ public class ProudctionModel {
 								{
 									LineDelete_s lds=new LineDelete_s(arc.nd[mmark[ii][ddata[ii]+1]].id,arc.nd[mmark[jj][ddata[jj]+1]].id,arc);
 									lds.exe();
+									exe_mark=true;
 								}
 								else
 									if(pru[ts_pro].left.data[ii][jj]==0&&pru[ts_pro].right.data[ii][jj]==1)
@@ -217,6 +225,7 @@ public class ProudctionModel {
 										}
 										LineAdd_s las=new LineAdd_s(s_port_use,t_port_use,arc);
 										las.exe();
+										exe_mark=true;
 									}
 							}
 							
@@ -232,9 +241,9 @@ public class ProudctionModel {
 						String del_node_id=arc.nd[mmark[0][1]].id;
 						//String del_node_id=pru[ts_pro].left.nd[0].id;
 						int type=pru[ts_pro].left.nd[0].type;
-						NodeDelete nd=new NodeDelete();
+						NodeDelete nd=new NodeDelete((BreezeDiagramEditor)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor());
 						nd.delete_node_id(del_node_id, type);
-						
+						exe_mark=true;
 					}
 					else
 						if(pru[ts_pro].left.num_node==0&&pru[ts_pro].right.num_node==1)
@@ -244,21 +253,29 @@ public class ProudctionModel {
 //							nad.drawLink();
 							NodeAdd_s  nad=new NodeAdd_s(pru[ts_pro].right.nd[0]);
 							nad.exe();
+							exe_mark=true;
 						}
 					
 					
 				}
 				
 				
-			} 
-			
-			
-			
-			
-			
-			
+			} 	
 		}
+		if(exe_mark)
+		{
+			MessageBox msgDlg = new MessageBox(Display.getCurrent().getActiveShell(), SWT.ICON_INFORMATION | SWT.OK);
+			msgDlg.setMessage("The production is applied successfully!!");
+			msgDlg.setText("Initialization:");
+			msgDlg.open();
+		}
+		
+		
+		
 		 
+		
+		
+		
 		
 	 }
 //	 public String find_edge_id(String source_node_id,String target_node_id)
@@ -422,8 +439,8 @@ public class ProudctionModel {
 	 public Boolean check_template_proper(node n1,node n2)//n1为architecture中的n2为production重的
 	 {
 	
-		 if(n1.type==0&&n2.type==0)
-			 return true;
+//		 if(n1.type==0&&n2.type==0)
+//			 return true;
 		 if(n1.port_num!=n2.port_num)
 			 return false;
 		 int[] s_mark=new int[n1.port_num];

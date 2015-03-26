@@ -4,6 +4,7 @@ public class port {
 	String id;
 	int direction;//0代表in,1代表out,2代表 inout
 	public int multiaccess;
+	public String name;
 	public String getId() {
 		return id;
 	}

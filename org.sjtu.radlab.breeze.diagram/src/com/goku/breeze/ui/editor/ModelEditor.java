@@ -124,7 +124,10 @@ public class ModelEditor extends ScrolledComposite {
 		if (editor instanceof SafetyEditor)
 			this.editorType = SafetyEditor.ID;
 		else if (editor instanceof CorrectnessEditor)
-			this.editorType = CorrectnessEditor.ID;
+			{
+				this.editorType = CorrectnessEditor.ID;
+				 
+			}
 		else this.editorType = "";
 
 		this.init(saFilePath);
@@ -208,7 +211,7 @@ public class ModelEditor extends ScrolledComposite {
 			ret = this.drawTableViewer(this.eventTable, new String[] { "ID", "Importance", "Type", "Gate", "Children" },
 					new int[] { 100, 100, 100, 80, 100 });
 		} else if (this.editorType.equals(CorrectnessEditor.ID)) {
-			ret = this.drawTableViewer(this.eventTable, new String[] { "ID", "Probability" }, new int[] { 200, 100 });
+			ret = this.drawTableViewer(this.eventTable, new String[] { "ID", "Tag" }, new int[] { 200, 100,100 });
 		}
 
 		this.eventTableViewer = (TableViewer) ret[0];
@@ -249,7 +252,6 @@ public class ModelEditor extends ScrolledComposite {
 		if (this.editorType.equals(SafetyEditor.ID)) {
 			EventComboSupport[] ecs = new EventComboSupport[] { new EventComboSupport(this, arch, this.eventTableViewer, 2),
 					new EventComboSupport(this, arch, this.eventTableViewer, 3) };
-
 			cols[2].setEditingSupport(ecs[0]);
 			cols[3].setEditingSupport(ecs[1]);
 		}
@@ -275,7 +277,7 @@ public class ModelEditor extends ScrolledComposite {
 		Object[] ret = null;
 
 		if (this.editorType.equals(CorrectnessEditor.ID)) {
-			ret = this.drawTableViewer(this.modeTable, new String[] { "Mode", "Type" }, new int[] { 220, 180 });
+			ret = this.drawTableViewer(this.modeTable, new String[] { "Mode", "Type","Tag" }, new int[] { 220, 180,100 });
 		} else {
 			ret = this.drawTableViewer(this.modeTable, new String[] { "Mode", "Function", "Occurrence", "Severity", "Detection",
 					"Human Factor", "Economy", "RPN", "Effect", "Cause", "Advice", "Deadline", "Measure" }, new int[] { 120, 180,
@@ -409,8 +411,12 @@ public class ModelEditor extends ScrolledComposite {
 		if (this.editorType.equals(CorrectnessEditor.ID)) {
 			modeCol[1].setEditingSupport(new ModeComboSupport(this, this.modeTableViewer));
 			modeCol[0].setEditingSupport(new ModeTextSupport(this, this.modeTableViewer, 0,
-					new ColumnViewer[] { this.transitionTableViewer }, new TransitionComboSupport[] { es[0], es[1] }));
-			btnRmMode.addSelectionListener(new ActionRmMode(this, node, this.modeTableViewer,
+					new ColumnViewer[] { this.transitionTableViewer }, new TransitionComboSupport[] { es[0], es[1]}));
+			
+			modeCol[2].setEditingSupport(new ModeTextSupport(this, this.modeTableViewer, 2,
+					new ColumnViewer[] { this.transitionTableViewer }, new TransitionComboSupport[] { es[0], es[1]}));
+			
+		btnRmMode.addSelectionListener(new ActionRmMode(this, node, this.modeTableViewer,
 					new TableViewer[] { this.transitionTableViewer }));
 			btnAddMode.addSelectionListener(new ActionAddMode(this, node, this.modeTableViewer, new EditingSupport[] { es[0],
 					es[1] }));
@@ -532,7 +538,7 @@ public class ModelEditor extends ScrolledComposite {
 		this.composite.setLayout(layout);
 
 		Label lb0 = new Label(this.composite, SWT.NONE);
-		lb0.setText("Component");
+		lb0.setText("Element");
 		lb0.setLayoutData(new GridData(SWT.BEGINNING, SWT.FILL, true, false, 1, 1));
 
 		this.componentSelectViewer = new ComboViewer(this.composite, SWT.READ_ONLY);
@@ -644,6 +650,8 @@ public class ModelEditor extends ScrolledComposite {
 			modeElement.addAttribute(BreezeObject.ATTR_ID, mode.getId());
 			modeElement.addAttribute(BreezeObject.ATTR_KEY, BreezeObject.TYPE_MODE);
 			modeElement.addAttribute(BreezeObject.ATTR_VALUE, mode.getType());
+		
+			 modeElement.addAttribute("tag", (String) mode.getProperty(BreezeObject.ATTR_TAG));
 
 			// write safety Attribute
 			if (this.editorType.equals(SafetyEditor.ID)) {

@@ -171,7 +171,7 @@ public class DiagramEditorActionBarAdvisor extends ActionBarAdvisor {
 
 			menuX.add(new Separator());
 
-			menuX.add(getAction(ActionFactory.DELETE.getId()));
+ 			menuX.add(getAction(ActionFactory.DELETE.getId()));
 
 			menuX.add(getAction(ActionFactory.SELECT_ALL.getId()));
 

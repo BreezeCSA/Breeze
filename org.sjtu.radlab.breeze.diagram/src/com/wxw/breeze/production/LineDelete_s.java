@@ -65,7 +65,11 @@ public class LineDelete_s {
 		Object obb=viewer.getEditPartRegistry();
 		
 		final List<LinkEditPart> ooo=viewer.findEditPartsForElement(edge_id, LinkEditPart.class);//e.g., get with viewer.findEditPartsForElement() or viewer.getEditPartRegistry()		
-		LinkEditPart lep=ooo.get(0);
+		
+		LinkEditPart lep=null;
+		if(ooo.size()!=0)
+		{	
+		lep=ooo.get(0);
 		final View l_view=(View)lep.getModel();
 		final LinkImpl l_impl=(LinkImpl) l_view.getElement();
 		final BreezeImpl breezeImpl = (BreezeImpl) testView.getElement(); // 某个节点的model
@@ -76,7 +80,7 @@ public class LineDelete_s {
 							}
 						});
 	
-	
+		}
 	}
 
 }

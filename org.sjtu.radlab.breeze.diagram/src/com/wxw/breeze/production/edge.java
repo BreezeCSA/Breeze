@@ -1,11 +1,21 @@
 package com.wxw.breeze.production;
 
 public class edge {
-	String id;
-	String source_port;
-	String target_port;
-	String source_node;
-	String target_node;
+	public String id;
+	public String source_port;
+	public String target_port;
+	public String source_node;
+	public String target_node;
+	
+	
+	
+	public edge() {
+		this.id=new String();
+		this.source_node=new String();
+		this.target_node=new String();
+		this.source_port=new String();
+		this.target_port=new String();
+	}
 	public String getId() {
 		return id;
 	}

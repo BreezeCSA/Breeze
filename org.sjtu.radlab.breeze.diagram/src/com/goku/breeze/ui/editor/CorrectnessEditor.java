@@ -17,9 +17,10 @@ public class CorrectnessEditor extends MultiPageEditorPart {
 
 	private String correctnessFilePath = null;
 	private ModelEditor defaultEditor = null;
-	private int defaultPageIndex, sourcePageIndex;
+	private int defaultPageIndex, sourcePageIndex,matrixPageIndex;
 	private boolean isPageModified = false;
 	private XMLViewer textEditor = null;
+	private MatrixEditor matrixEditor=null;
 
 	public CorrectnessEditor() {
 		// TODO Auto-generated constructor stub
@@ -40,12 +41,29 @@ public class CorrectnessEditor extends MultiPageEditorPart {
 		this.defaultPageIndex = this.addPage(this.defaultEditor);
 		this.setPageText(this.defaultPageIndex, "Correctness");
 	}
+	
+	public void createMatrixPage() {
+		IEditorInput iei = this.getEditorInput();
+		if (iei instanceof FileEditorInput) {
+			FileEditorInput fei = (FileEditorInput) iei;
+			this.correctnessFilePath = fei.getFile().getLocation().toString();
+		}
+		String name = iei.getName();
+		if (name.endsWith(FILE_EXTENSION)) {
+			name = name.substring(0, name.length() - FILE_EXTENSION.length() - 1);
+		}
+		this.matrixEditor = new MatrixEditor(this.correctnessFilePath, name, this.getContainer(), this);
+		
+		this.matrixPageIndex = this.addPage(this.matrixEditor);
+		this.setPageText(this.matrixPageIndex, "Matrix");
+	}
 
 	@Override
 	protected void createPages() {
 		// TODO Auto-generated method stub
 		this.createDefaultPage();
 		this.createSourcePage();
+		this.createMatrixPage();
 		this.setPartName(this.getEditorInput().getName());
 		this.setTitleToolTip(this.getEditorInput().getToolTipText());
 	}
@@ -123,6 +141,7 @@ public class CorrectnessEditor extends MultiPageEditorPart {
 			this.defaultEditor.setFocus();
 		else if (active == this.sourcePageIndex)
 			this.textEditor.setFocus();
+		else if (active == this.matrixPageIndex) this.matrixEditor.setFocus();
 	}
 
 }

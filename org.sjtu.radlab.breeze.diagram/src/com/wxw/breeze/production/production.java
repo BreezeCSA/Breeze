@@ -9,6 +9,12 @@ public class production {
 		this.left = left;
 		this.right = right;
 	}
-
+	public production(production pro)
+	{
+		this.id=pro.id;
+		this.left=pro.left;
+		this.right=pro.right;
+		
+	}
 	
 }

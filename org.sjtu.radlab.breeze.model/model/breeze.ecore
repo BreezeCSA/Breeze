@@ -88,6 +88,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Template" eSuperTypes="#//ArchElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="node" upperBound="-1" eType="#//NodeTemplate"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="StyleType" eType="#//StyleType"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Production" eSuperTypes="#//ArchElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//Arch"
@@ -102,6 +103,8 @@
   <eClassifiers xsi:type="ecore:EEnum" name="StyleType">
     <eLiterals name="CS" literal="CS"/>
     <eLiterals name="C2" value="1" literal="C2"/>
+    <eLiterals name="PipeFilter" value="2" literal="PipeFilter"/>
+    <eLiterals name="Blackboard" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Method">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//AccessType"

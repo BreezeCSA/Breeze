@@ -4,7 +4,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.IEditorActionBarContributor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -12,17 +11,17 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
 
-public class SafetyEditor extends MultiPageEditorPart {
-	public static final String FILE_EXTENSION = "safety";
-	public static final String ID = "com.goku.breeze.editor.SafetyEditor";
+public class ScenarioEditor extends MultiPageEditorPart {
+	public static final String FILE_EXTENSION = "scenario";
+	public static final String ID = "com.goku.breeze.editor.ScenarioEditor";
 
-	private ModelEditor defaultEditor = null;
+	private String scenarioFilePath = null;
+	private ScenarioModelEditor defaultEditor = null;
 	private int defaultPageIndex, sourcePageIndex;
 	private boolean isPageModified = false;
-	private String safetyFilePath = null;
 	private XMLViewer textEditor = null;
 
-	public SafetyEditor() {
+	public ScenarioEditor() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -30,17 +29,16 @@ public class SafetyEditor extends MultiPageEditorPart {
 		IEditorInput iei = this.getEditorInput();
 		if (iei instanceof FileEditorInput) {
 			FileEditorInput fei = (FileEditorInput) iei;
-			this.safetyFilePath = fei.getFile().getLocation().toString();
+			this.scenarioFilePath = fei.getFile().getLocation().toString();
 		}
 		String name = iei.getName();
 		if (name.endsWith(FILE_EXTENSION)) {
 			name = name.substring(0, name.length() - FILE_EXTENSION.length() - 1);
 		}
+		this.defaultEditor = new ScenarioModelEditor(this.scenarioFilePath,name, this.getContainer(),this);
 
-		this.defaultEditor = new ModelEditor(this.safetyFilePath, name, this.getContainer(), this);
-		
 		this.defaultPageIndex = this.addPage(this.defaultEditor);
-		this.setPageText(this.defaultPageIndex, "Safety");
+		this.setPageText(this.defaultPageIndex, "Scenario Modeling");
 	}
 
 	@Override
@@ -48,7 +46,6 @@ public class SafetyEditor extends MultiPageEditorPart {
 		// TODO Auto-generated method stub
 		this.createDefaultPage();
 		this.createSourcePage();
-		
 		this.setPartName(this.getEditorInput().getName());
 		this.setTitleToolTip(this.getEditorInput().getToolTipText());
 	}
@@ -59,15 +56,13 @@ public class SafetyEditor extends MultiPageEditorPart {
 		this.sourcePageIndex = this.addPage(this.textEditor);
 		this.setPageText(this.sourcePageIndex, "Source");
 	}
-	
-
 
 	@Override
 	public void doSave(IProgressMonitor monitor) {
 		// TODO Auto-generated method stub
 		this.defaultEditor.doSave();
 
-		this.textEditor.triggerChange(this.safetyFilePath);
+		this.textEditor.triggerChange(this.scenarioFilePath);
 		this.isPageModified = false;
 		this.firePropertyChange(IEditorPart.PROP_DIRTY);
 	}
@@ -88,7 +83,8 @@ public class SafetyEditor extends MultiPageEditorPart {
 
 	@Override
 	protected void handlePropertyChange(int propId) {
-		if (propId == IEditorPart.PROP_DIRTY) this.isPageModified = this.isDirty();
+		if (propId == IEditorPart.PROP_DIRTY)
+			this.isPageModified = this.isDirty();
 		super.firePropertyChange(propId);
 	}
 
@@ -111,20 +107,12 @@ public class SafetyEditor extends MultiPageEditorPart {
 	public void modelModified() {
 		boolean wasDirty = this.isDirty();
 		this.isPageModified = true;
-		if (!wasDirty) this.firePropertyChange(IEditorPart.PROP_DIRTY);
+		if (!wasDirty)
+			this.firePropertyChange(IEditorPart.PROP_DIRTY);
 	}
 
 	@Override
 	protected void pageChange(int newPageIndex) {
-		if (newPageIndex == this.defaultPageIndex) {
-
-		} else if (newPageIndex == this.sourcePageIndex) {
-
-		}
-		IEditorActionBarContributor contributor = this.getEditorSite().getActionBarContributor();
-		if (contributor instanceof SafetyEditorContributor) {
-			((SafetyEditorContributor) contributor).setActivePage(this, newPageIndex);
-		}
 		super.pageChange(newPageIndex);
 	}
 
@@ -133,7 +121,8 @@ public class SafetyEditor extends MultiPageEditorPart {
 		int active = this.getActivePage();
 		if (active == this.defaultPageIndex)
 			this.defaultEditor.setFocus();
-		else if (active == this.sourcePageIndex) this.textEditor.setFocus();
+		else if (active == this.sourcePageIndex)
+			this.textEditor.setFocus();
 	}
 
 }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Breeze" uid="org.sjtu.radlab.breeze.diagram.product" id="org.sjtu.radlab.breeze.diagram.goku" application="org.sjtu.radlab.breeze.diagram.BreezeApplication" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
+<product name="Breeze" uid="org.sjtu.radlab.breeze.diagram.product" id="org.sjtu.radlab.breeze.diagram.Breeze" application="org.sjtu.radlab.breeze.diagram.BreezeApplication" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
 
    <aboutInfo>
-      <image path="/org.sjtu.radlab.breeze.diagram/breeze48.png"/>
+      <image path="breeze48.png"/>
    </aboutInfo>
 
    <configIni use="default">
@@ -14,26 +14,12 @@
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
    </launcherArgs>
 
-   <windowImages i16="icons/icons/breeze_ico_16.png" i32="icons/icons/breeze_ico_32.png" i48="/org.sjtu.radlab.breeze.diagram/breeze48.png" i64="icons/icons/breeze_ico_64.png" i128="icons/icons/breeze_ico_128.png"/>
+   <windowImages i16="icons/icons/breeze_ico_16.png" i32="icons/icons/breeze_ico_32.png" i48="breeze48.png" i64="icons/icons/breeze_ico_64.png" i128="icons/icons/breeze_ico_128.png"/>
 
    <splash
-      location="org.sjtu.radlab.breeze.diagram"
       startupProgressRect="5,275,445,15"
       startupMessageRect="7,252,445,20"
       startupForegroundColor="00FF40" />
-   <launcher>
-      <linux icon="/org.sjtu.radlab.breeze.diagram/breeze.xpm"/>
-      <solaris/>
-      <win useIco="true">
-         <ico path="/org.sjtu.radlab.breeze.launch.macos/icons/favicon.ico"/>
-         <bmp
-            winLargeHigh="/org.sjtu.radlab.breeze.diagram/breeze48.bmp"/>
-      </win>
-   </launcher>
-
-   <vm>
-   </vm>
-
    <plugins>
       <plugin id="com.ibm.icu"/>
       <plugin id="dom4j_test"/>
@@ -66,15 +52,12 @@
       <plugin id="org.eclipse.core.filesystem"/>
       <plugin id="org.eclipse.core.filesystem.aix.ppc" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.aix.ppc64" fragment="true"/>
-      <plugin id="org.eclipse.core.filesystem.hpux.PA_RISC"/>
       <plugin id="org.eclipse.core.filesystem.hpux.ia64" fragment="true"/>
-      <plugin id="org.eclipse.core.filesystem.hpux.ia64_32"/>
       <plugin id="org.eclipse.core.filesystem.linux.ppc" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.linux.ppc64" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.linux.x86" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.linux.x86_64" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.macosx" fragment="true"/>
-      <plugin id="org.eclipse.core.filesystem.qnx.x86"/>
       <plugin id="org.eclipse.core.filesystem.solaris.sparc" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.core.filesystem.win32.x86_64" fragment="true"/>
@@ -97,7 +80,6 @@
       <plugin id="org.eclipse.e4.ui.css.core"/>
       <plugin id="org.eclipse.e4.ui.css.swt"/>
       <plugin id="org.eclipse.e4.ui.css.swt.theme"/>
-      <plugin id="org.eclipse.e4.ui.css.swt.theme.source"/>
       <plugin id="org.eclipse.e4.ui.di"/>
       <plugin id="org.eclipse.e4.ui.model.workbench"/>
       <plugin id="org.eclipse.e4.ui.services"/>
@@ -125,29 +107,6 @@
       <plugin id="org.eclipse.equinox.common"/>
       <plugin id="org.eclipse.equinox.ds"/>
       <plugin id="org.eclipse.equinox.event"/>
-      <plugin id="org.eclipse.equinox.launcher"/>
-      <plugin id="org.eclipse.equinox.launcher.carbon.macosx"/>
-      <plugin id="org.eclipse.equinox.launcher.cocoa.macosx" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.cocoa.macosx.x86_64" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.gtk.aix.ppc" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.gtk.aix.ppc64" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.gtk.hpux.ia64" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.gtk.linux.ppc" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.gtk.linux.ppc64" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.gtk.linux.s390" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.gtk.linux.s390x" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.gtk.linux.x86" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.gtk.linux.x86_64" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.gtk.solaris.sparc" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.gtk.solaris.x86" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.motif.aix.ppc"/>
-      <plugin id="org.eclipse.equinox.launcher.motif.hpux.PA_RISC"/>
-      <plugin id="org.eclipse.equinox.launcher.motif.hpux.ia64_32"/>
-      <plugin id="org.eclipse.equinox.launcher.motif.linux.x86"/>
-      <plugin id="org.eclipse.equinox.launcher.motif.solaris.sparc"/>
-      <plugin id="org.eclipse.equinox.launcher.win32.win32.x86" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.win32.win32.x86_64" fragment="true"/>
-      <plugin id="org.eclipse.equinox.launcher.wpf.win32.x86"/>
       <plugin id="org.eclipse.equinox.p2.core"/>
       <plugin id="org.eclipse.equinox.p2.engine"/>
       <plugin id="org.eclipse.equinox.p2.metadata"/>
@@ -210,7 +169,6 @@
       <plugin id="org.eclipse.osgi.services"/>
       <plugin id="org.eclipse.search"/>
       <plugin id="org.eclipse.swt"/>
-      <plugin id="org.eclipse.swt.carbon.macosx"/>
       <plugin id="org.eclipse.swt.cocoa.macosx" fragment="true"/>
       <plugin id="org.eclipse.swt.cocoa.macosx.x86_64" fragment="true"/>
       <plugin id="org.eclipse.swt.gtk.aix.ppc" fragment="true"/>
@@ -224,21 +182,12 @@
       <plugin id="org.eclipse.swt.gtk.linux.x86_64" fragment="true"/>
       <plugin id="org.eclipse.swt.gtk.solaris.sparc" fragment="true"/>
       <plugin id="org.eclipse.swt.gtk.solaris.x86" fragment="true"/>
-      <plugin id="org.eclipse.swt.motif.aix.ppc"/>
-      <plugin id="org.eclipse.swt.motif.hpux.PA_RISC"/>
-      <plugin id="org.eclipse.swt.motif.hpux.ia64_32"/>
-      <plugin id="org.eclipse.swt.motif.linux.x86"/>
-      <plugin id="org.eclipse.swt.motif.solaris.sparc"/>
-      <plugin id="org.eclipse.swt.photon.qnx.x86"/>
       <plugin id="org.eclipse.swt.win32.win32.x86" fragment="true"/>
       <plugin id="org.eclipse.swt.win32.win32.x86_64" fragment="true"/>
-      <plugin id="org.eclipse.swt.wpf.win32.x86"/>
       <plugin id="org.eclipse.team.core"/>
       <plugin id="org.eclipse.team.ui"/>
       <plugin id="org.eclipse.text"/>
       <plugin id="org.eclipse.ui"/>
-      <plugin id="org.eclipse.ui.carbon"/>
-      <plugin id="org.eclipse.ui.cocoa" fragment="true"/>
       <plugin id="org.eclipse.ui.console"/>
       <plugin id="org.eclipse.ui.editors"/>
       <plugin id="org.eclipse.ui.forms"/>
@@ -249,7 +198,6 @@
       <plugin id="org.eclipse.ui.views.properties.tabbed"/>
       <plugin id="org.eclipse.ui.win32" fragment="true"/>
       <plugin id="org.eclipse.ui.workbench"/>
-      <plugin id="org.eclipse.ui.workbench.source"/>
       <plugin id="org.eclipse.ui.workbench.texteditor"/>
       <plugin id="org.jfree.jfreeForRCP"/>
       <plugin id="org.sjtu.radlab.breeze.diagram"/>
@@ -261,8 +209,5 @@
       <plugin id="org.w3c.dom.svg"/>
    </plugins>
 
-   <configurations>
-      <property name="org.eclipse.ui/SHOW_PROGRESS_ON_STARTUP" value="true" />
-   </configurations>
 
 </product>

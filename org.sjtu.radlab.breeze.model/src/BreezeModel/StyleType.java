@@ -36,7 +36,23 @@ public enum StyleType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	C2(1, "C2", "C2");
+	C2(1, "C2", "C2"), /**
+	 * The '<em><b>Pipe Filter</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PIPE_FILTER_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	PIPE_FILTER(2, "PipeFilter", "PipeFilter"), /**
+	 * The '<em><b>Blackboard</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #BLACKBOARD_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	BLACKBOARD(3, "Blackboard", "Blackboard");
 
 	/**
 	 * The '<em><b>CS</b></em>' literal value.
@@ -69,6 +85,36 @@ public enum StyleType implements Enumerator {
 	public static final int C2_VALUE = 1;
 
 	/**
+	 * The '<em><b>Pipe Filter</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Pipe Filter</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #PIPE_FILTER
+	 * @model name="PipeFilter"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int PIPE_FILTER_VALUE = 2;
+
+	/**
+	 * The '<em><b>Blackboard</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Blackboard</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #BLACKBOARD
+	 * @model name="Blackboard"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BLACKBOARD_VALUE = 3;
+
+	/**
 	 * An array of all the '<em><b>Style Type</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,6 +124,8 @@ public enum StyleType implements Enumerator {
 		new StyleType[] {
 			CS,
 			C2,
+			PIPE_FILTER,
+			BLACKBOARD,
 		};
 
 	/**
@@ -130,6 +178,8 @@ public enum StyleType implements Enumerator {
 		switch (value) {
 			case CS_VALUE: return CS;
 			case C2_VALUE: return C2;
+			case PIPE_FILTER_VALUE: return PIPE_FILTER;
+			case BLACKBOARD_VALUE: return BLACKBOARD;
 		}
 		return null;
 	}

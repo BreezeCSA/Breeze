@@ -28,6 +28,8 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="breeze.ecore#//StyleType">
       <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//StyleType/CS"/>
       <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//StyleType/C2"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//StyleType/PipeFilter"/>
+      <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//StyleType/Blackboard"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="breeze.ecore#//MultiAccess">
       <genEnumLiterals ecoreEnumLiteral="breeze.ecore#//MultiAccess/Yes"/>
@@ -94,6 +96,7 @@
     </genClasses>
     <genClasses ecoreClass="breeze.ecore#//Template">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference breeze.ecore#//Template/node"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute breeze.ecore#//Template/StyleType"/>
     </genClasses>
     <genClasses ecoreClass="breeze.ecore#//Production">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference breeze.ecore#//Production/left"/>

@@ -11,6 +11,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -43,6 +44,7 @@ import org.eclipse.gef.ui.parts.GraphicalEditor;
 import org.eclipse.gmf.runtime.common.core.util.StringStatics;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
@@ -53,8 +55,10 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.DiagramColorConstants;
 import org.eclipse.gmf.runtime.diagram.ui.internal.properties.Properties;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
+import org.eclipse.gmf.runtime.diagram.ui.render.editparts.RenderedDiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.ChangePropertyValueRequest;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
+import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
@@ -104,10 +108,25 @@ public class ComponentEditPart extends AbstractBorderedShapeEditPart {
 	protected IFigure contentPane;
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected IFigure primaryShape;
 
+	public void removeChild1(EditPart child) {
+		Assert.isNotNull(child);
+		int index = getChildren().indexOf(child);
+		if (index < 0)
+			return;
+		fireRemovingChild(child, index);
+		if (isActive())
+			child.deactivate();
+		child.removeNotify();
+		removeChildVisual(child);
+		child.setParent(null);
+		getChildren().remove(child);
+	}
+	
+	
 	/**
 	 * @generated
 	 */
@@ -130,12 +149,39 @@ public class ComponentEditPart extends AbstractBorderedShapeEditPart {
 						 ComponentEditPart edp=(ComponentEditPart) BreezeModel.diagram.part.BreezeDiagramEditor.selectedEditPart;
 						 Color col=findcolor_name(nti.getName()); 
 						 edp.setBackgroundColor(col);
-						 
+//						 List<Port> list1 =  nti.getPort();
+//						 Iterator<Port> it1 = list1.iterator();
+//						 Iterator<Object> it2=edp.getChildren().iterator();
+//						 int index=0;
+//						 Object o=PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();		
+//						 BreezeDiagramEditor diagramEditor = (BreezeDiagramEditor) o;
+//						 IDiagramGraphicalViewer viewer = diagramEditor.getDiagramGraphicalViewer();
+//					 	 List<PortEditPart> ooo=viewer.findEditPartsForElement("_a3OesCT-EeS_0Z86yJizKw", PortEditPart.class);
+//					 	 PortEditPart ppep=new PortEditPart(null);
+//
+//					    System.out.println("ttest");
+//						 while(it2.hasNext())
+//						 {
+//							 index++;
+//							 Object pep=it2.next();
+//							 if(pep instanceof PortEditPart)
+//							 {
+//								     it2.remove();
+//								 index--;
+//								 
+//							 }
+//							
+//							 
+//						 }
+//						 
+// 						while(it1.hasNext())
+// 					 	 edp.addChild((PortEditPart)it1.next(), index);
 						 ChangePropertyValueRequest req = new ChangePropertyValueRequest( 
 							        StringStatics.BLANK,Properties.ID_FILLCOLOR,
 							    FigureUtilities.colorToInteger(col));
 						 final Command cmd = edp.getCommand(req);
 						cmd.execute();
+						
 						}
 				}
 			}
@@ -143,6 +189,7 @@ public class ComponentEditPart extends AbstractBorderedShapeEditPart {
 		
 		
 	}
+   
 	public Color findcolor_name(String tem_id)
 	{
 		Object o=PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();

@@ -48,18 +48,18 @@ public class ActionGenerateFta extends ActionFilesSelection {
 	@Override
 	public void run(IAction action) {
 		// TODO Auto-generated method stub
-		if (this.getAbsolutePath() == null && this.getSelectedFileNames() == null)
-			return;
+		if (this.getAbsolutePath() == null && this.getSelectedFileNames() == null) return;
 
 		for (int i = 0; i < this.getSelectedFileNames().length; ++i) {
 			if (this.getSelectedFileNames()[i] != null) {
 				String fileName = this.getAbsolutePath() + this.getSelectedFileNames()[i];
 				if (fileName.endsWith(SafetyEditor.FILE_EXTENSION)) {
 					String xml = this.writeFtaXmlFile(fileName);
-					FTATranslator ftat = new FTATranslator(xml, fileName, true);
+					FTATranslator ftat = new FTATranslator(xml, this.getSelectedFileNames()[i], true);
 					String fta = ftat.getFTAContent();
 					String ped = ftat.getPEDContent();
 					try {
+						fileName = this.getAbsolutePath() + "FTA/" + this.getSelectedFileNames()[i];
 						FileOutputStream fos0 = new FileOutputStream(fileName + ".fta");
 						FileOutputStream fos1 = new FileOutputStream(fileName + ".ped");
 						fos0.write(fta.getBytes());
@@ -105,6 +105,9 @@ public class ActionGenerateFta extends ActionFilesSelection {
 					Element basicEventElement = basicEventListElement.addElement(FTATranslator.NODE_NODE_FAILURE_EVENT);
 					basicEventElement.addAttribute(FTATranslator.ATTR_ID, event.getId());
 					basicEventElement.addAttribute(FTATranslator.ATTR_DESC, event.getId());
+					// add this exp
+					basicEventElement.addAttribute(FTATranslator.ATTR_PROBABILITY, event.getProbability());
+					// add this exp
 				}
 			}
 

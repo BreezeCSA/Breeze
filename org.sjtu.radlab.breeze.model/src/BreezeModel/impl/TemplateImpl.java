@@ -3,18 +3,16 @@
 package BreezeModel.impl;
 
 import BreezeModel.NodeTemplate;
+import BreezeModel.StyleType;
 import BreezeModel.Template;
 import BreezeModel.breezePackage;
-
 import java.util.Collection;
-
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -26,6 +24,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link BreezeModel.impl.TemplateImpl#getNode <em>Node</em>}</li>
+ *   <li>{@link BreezeModel.impl.TemplateImpl#getStyleType <em>Style Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -41,6 +40,26 @@ public class TemplateImpl extends ArchElementImpl implements Template {
 	 * @ordered
 	 */
 	protected EList<NodeTemplate> node;
+
+	/**
+	 * The default value of the '{@link #getStyleType() <em>Style Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStyleType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final StyleType STYLE_TYPE_EDEFAULT = StyleType.CS;
+
+	/**
+	 * The cached value of the '{@link #getStyleType() <em>Style Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStyleType()
+	 * @generated
+	 * @ordered
+	 */
+	protected StyleType styleType = STYLE_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -78,6 +97,27 @@ public class TemplateImpl extends ArchElementImpl implements Template {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public StyleType getStyleType() {
+		return styleType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStyleType(StyleType newStyleType) {
+		StyleType oldStyleType = styleType;
+		styleType = newStyleType == null ? STYLE_TYPE_EDEFAULT : newStyleType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, breezePackage.TEMPLATE__STYLE_TYPE, oldStyleType, styleType));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -97,6 +137,8 @@ public class TemplateImpl extends ArchElementImpl implements Template {
 		switch (featureID) {
 			case breezePackage.TEMPLATE__NODE:
 				return getNode();
+			case breezePackage.TEMPLATE__STYLE_TYPE:
+				return getStyleType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -114,6 +156,9 @@ public class TemplateImpl extends ArchElementImpl implements Template {
 				getNode().clear();
 				getNode().addAll((Collection<? extends NodeTemplate>)newValue);
 				return;
+			case breezePackage.TEMPLATE__STYLE_TYPE:
+				setStyleType((StyleType)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -129,6 +174,9 @@ public class TemplateImpl extends ArchElementImpl implements Template {
 			case breezePackage.TEMPLATE__NODE:
 				getNode().clear();
 				return;
+			case breezePackage.TEMPLATE__STYLE_TYPE:
+				setStyleType(STYLE_TYPE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -143,8 +191,26 @@ public class TemplateImpl extends ArchElementImpl implements Template {
 		switch (featureID) {
 			case breezePackage.TEMPLATE__NODE:
 				return node != null && !node.isEmpty();
+			case breezePackage.TEMPLATE__STYLE_TYPE:
+				return styleType != STYLE_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (StyleType: ");
+		result.append(styleType);
+		result.append(')');
+		return result.toString();
 	}
 
 } //TemplateImpl

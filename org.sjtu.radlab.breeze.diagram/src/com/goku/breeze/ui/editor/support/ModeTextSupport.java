@@ -52,7 +52,9 @@ public class ModeTextSupport extends EditingSupport {
 		switch (this.columnIndex) {
 		case 0:
 			return bm.getId();
-
+		case 2:
+			if(bm.getProperty("tag")!=null)
+				return bm.getProperty("tag");
 		}
 		return "";
 	}
@@ -83,6 +85,10 @@ public class ModeTextSupport extends EditingSupport {
 				}
 				this.sme.fireModelChange();
 			}
+			break;
+		case 2:
+			bm.setProperty("tag", value.toString());
+			this.sme.fireModelChange();
 			break;
 
 		}

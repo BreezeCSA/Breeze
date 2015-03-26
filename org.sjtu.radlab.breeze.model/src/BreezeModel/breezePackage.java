@@ -1146,13 +1146,22 @@ public interface breezePackage extends EPackage {
 	int TEMPLATE__NODE = ARCH_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Style Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE__STYLE_TYPE = ARCH_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Template</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEMPLATE_FEATURE_COUNT = ARCH_ELEMENT_FEATURE_COUNT + 1;
+	int TEMPLATE_FEATURE_COUNT = ARCH_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Template</em>' class.
@@ -1847,6 +1856,17 @@ public interface breezePackage extends EPackage {
 	EReference getTemplate_Node();
 
 	/**
+	 * Returns the meta object for the attribute '{@link BreezeModel.Template#getStyleType <em>Style Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Style Type</em>'.
+	 * @see BreezeModel.Template#getStyleType()
+	 * @see #getTemplate()
+	 * @generated
+	 */
+	EAttribute getTemplate_StyleType();
+
+	/**
 	 * Returns the meta object for class '{@link BreezeModel.Production <em>Production</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2393,6 +2413,14 @@ public interface breezePackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEMPLATE__NODE = eINSTANCE.getTemplate_Node();
+
+		/**
+		 * The meta object literal for the '<em><b>Style Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEMPLATE__STYLE_TYPE = eINSTANCE.getTemplate_StyleType();
 
 		/**
 		 * The meta object literal for the '{@link BreezeModel.impl.ProductionImpl <em>Production</em>}' class.

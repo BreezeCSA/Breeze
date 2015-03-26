@@ -51,19 +51,17 @@ public class InitModelUtil {
 			}
 
 			// copy breeze model file and diagram file to safety folder
-			int pos=folder.indexOf("\\");
-			String st_trs=null;
-			if(pos==-1)
-				st_trs=folder;
-			else
-				st_trs=folder.substring(0,pos);
-			String safetyModelFile=null;
-			if(folder!="production")
-			 safetyModelFile = selectedPath.removeLastSegments(1).append(folder).append(name + "_" + st_trs+"_production"  + ".breeze")
+			int pos = folder.indexOf("/");
+			String st_trs = null;
+			if (pos == -1)
+				st_trs = folder;
+			else st_trs = folder.substring(pos + 1, folder.length());
+			String safetyModelFile = null;
+			if (!folder.equals("production"))
+				safetyModelFile = selectedPath.removeLastSegments(1).append(folder)
+						.append(name + "_" + st_trs + "_production" + ".breeze").toString();
+			else safetyModelFile = selectedPath.removeLastSegments(1).append(folder).append(name + "_" + st_trs + ".breeze")
 					.toString();
-			else
-				safetyModelFile = selectedPath.removeLastSegments(1).append(folder).append(name + "_" + st_trs  + ".breeze")
-				.toString();
 			String safetyDiagramFile = safetyModelFile + "_diagram";
 			if (!copyFile(modelFilePathString, safetyModelFile) || !copyFile(diagramFilePathString, safetyDiagramFile)) {
 				MessageBox msgDlg = new MessageBox(Display.getCurrent().getActiveShell(), SWT.ICON_INFORMATION | SWT.OK);
@@ -74,10 +72,9 @@ public class InitModelUtil {
 			}
 
 			try {
-				if(folder!="production")
-				transferDiagramFile(safetyDiagramFile, fileName, name + "_" + st_trs+"_production"  + ".breeze");
-				else
-					transferDiagramFile(safetyDiagramFile, fileName, name + "_" + st_trs  + ".breeze");
+				if (folder != "production")
+					transferDiagramFile(safetyDiagramFile, fileName, name + "_" + st_trs + "_production" + ".breeze");
+				else transferDiagramFile(safetyDiagramFile, fileName, name + "_" + st_trs + ".breeze");
 				//transferDiagramFile(safetyDiagramFile, fileName, name + "_" + folder+"_production" + ".breeze_diagram");
 			} catch (Exception e) {
 				MessageBox msgDlg = new MessageBox(Display.getCurrent().getActiveShell(), SWT.ICON_INFORMATION | SWT.OK);

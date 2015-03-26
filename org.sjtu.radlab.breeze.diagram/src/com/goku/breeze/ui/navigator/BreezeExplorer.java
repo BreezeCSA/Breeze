@@ -26,10 +26,12 @@ import com.goku.breeze.ui.console.ConsoleFactory;
 import com.goku.breeze.ui.console.ConsoleUtil;
 import com.goku.breeze.ui.editor.CorrectnessEditor;
 import com.goku.breeze.ui.editor.DTMCEditor;
+import com.goku.breeze.ui.editor.DeadlockEditor;
 import com.goku.breeze.ui.editor.MKVEditor;
 import com.goku.breeze.ui.editor.RBDEditor;
 import com.goku.breeze.ui.editor.SMVEditor;
 import com.goku.breeze.ui.editor.SafetyEditor;
+import com.goku.breeze.ui.editor.ScenarioEditor;
 import com.goku.breeze.ui.editor.XMLEditor;
 
 public class BreezeExplorer extends org.eclipse.ui.navigator.CommonNavigator {
@@ -69,7 +71,19 @@ public class BreezeExplorer extends org.eclipse.ui.navigator.CommonNavigator {
 						e.printStackTrace();
 					}
 				}
-			} else if (RBDEditor.FILE_EXTENSION.equals(extension)) {
+			}else if (DeadlockEditor.FILE_EXTENSION.equals(extension)) {
+				FileEditorInput fei = new FileEditorInput(ifile);
+				IEditorPart editorPart = page.findEditor(fei);
+				if (editorPart == null) {
+					try {
+						page.openEditor(fei, DeadlockEditor.ID);
+					} catch (PartInitException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			} 
+			else if (RBDEditor.FILE_EXTENSION.equals(extension)) {
 				FileEditorInput fei = new FileEditorInput(ifile);
 				IEditorPart editorPart = page.findEditor(fei);
 				if (editorPart == null) {
@@ -80,7 +94,19 @@ public class BreezeExplorer extends org.eclipse.ui.navigator.CommonNavigator {
 						e.printStackTrace();
 					}
 				}
-			} else if (MKVEditor.FILE_EXTENSION.equals(extension)) {
+			}	else if (ScenarioEditor.FILE_EXTENSION.equals(extension)) {
+				FileEditorInput fei = new FileEditorInput(ifile);
+				IEditorPart editorPart = page.findEditor(fei);
+				if (editorPart == null) {
+					try {
+						page.openEditor(fei, ScenarioEditor.ID);
+					} catch (PartInitException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			} 
+			else if (MKVEditor.FILE_EXTENSION.equals(extension)) {
 				FileEditorInput fei = new FileEditorInput(ifile);
 				IEditorPart editorPart = page.findEditor(fei);
 				if (editorPart == null) {
@@ -102,7 +128,15 @@ public class BreezeExplorer extends org.eclipse.ui.navigator.CommonNavigator {
 						e.printStackTrace();
 					}
 				}
-			} else if ("breeze_diagram".equals(extension)) {
+			} else if (extension.equals("gspn_model")) {
+				FileEditorInput fei = new FileEditorInput(ifile);
+				try {
+					page.openEditor(fei, XMLEditor.ID);
+				} catch (PartInitException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();}
+			} 
+			else if ("breeze_diagram".equals(extension)) {
 
 				String pathStr = file.getLocation().toString();
 				org.eclipse.emf.common.util.URI diagramURI = org.eclipse.emf.common.util.URI.createFileURI(pathStr);

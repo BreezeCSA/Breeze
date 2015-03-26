@@ -119,8 +119,7 @@ public class FTATranslator {
 			if (id == null) {
 				this.errorMsg.addLast(ele.getUniquePath() + ": need " + ATTR_ID);
 			}
-			if (truncate && id.length() > FTATranslator.truncateLength)
-				id = id.substring(0, truncateLength);
+			if (truncate && id.length() > FTATranslator.truncateLength) id = id.substring(0, truncateLength);
 			lst.put(id,
 					new BasicEvent(id, ele.attributeValue(FTATranslator.ATTR_DESC), ele
 							.attributeValue(FTATranslator.ATTR_PROBABILITY)));
@@ -150,8 +149,7 @@ public class FTATranslator {
 		if (eleId == null) {
 			this.errorMsg.addLast(ele.getUniquePath() + ": need " + ATTR_ID);
 		}
-		if (truncate && eleId.length() > FTATranslator.truncateLength)
-			eleId = eleId.substring(0, truncateLength);
+		if (truncate && eleId.length() > FTATranslator.truncateLength) eleId = eleId.substring(0, truncateLength);
 
 		if (type == null) {
 			if (!this.eventSet.containsKey(eleId)) {
@@ -187,12 +185,12 @@ public class FTATranslator {
 			return;
 		}
 		StringBuilder sb = new StringBuilder();
+
 		sb.append(outputName).append(".ped\nS NULL 0\n0\n");
 		this.eventSet = this.getBasicEventList(rootElement, truncate);
 
 		Element top = rootElement.element(FTATranslator.NODE_ARCH_FAILURE);
-		if (top == null)
-			return;
+		if (top == null) return;
 		this.parseFT(top, sb, truncate);
 		this.ftaContent = sb.toString();
 

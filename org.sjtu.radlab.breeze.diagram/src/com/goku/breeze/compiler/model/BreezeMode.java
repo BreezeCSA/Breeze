@@ -5,6 +5,7 @@ import com.goku.breeze.compiler.main.textFormatter.BaseSMVSourceFormatter;
 public class BreezeMode extends BreezeObject {
 	public static final String BREEZE_MODE_NAME = "mode";
 	public static final String TYPE_FAILURE = "failure";
+	public static final String BREEZE_MODE_TAG = "tag";
 	public static final String TYPE_INITIAL = "initial";
 	public static final String TYPE_NORMAL = "normal";
 	public static final String TYPE_STOP = "stopped";
@@ -34,6 +35,10 @@ public class BreezeMode extends BreezeObject {
 
 	public String generateInternalStateName(String srcName, String tgtName) {
 		return srcName == null ? "" : srcName + "_" + tgtName + this.counter++;
+	}
+
+	public static String getBreezeModeTag() {
+		return BREEZE_MODE_TAG;
 	}
 
 	public String getId() {

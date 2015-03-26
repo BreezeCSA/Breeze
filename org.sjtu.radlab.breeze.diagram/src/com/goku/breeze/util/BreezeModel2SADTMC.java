@@ -178,6 +178,7 @@ public class BreezeModel2SADTMC {
 			edgeEle.addAttribute("targetName", edge.getSource().getContainer().getName());
 			edgeEle.addAttribute(BreezeObject.ATTR_TARGET_PORT, edge.getSource().getId());
 			edgeEle.addAttribute("probability", "0");			
+			edgeEle.addAttribute("isVirtual", "0");		
 		}
 	}
 }

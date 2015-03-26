@@ -4,7 +4,6 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.ErrorDialog;
@@ -159,15 +158,20 @@ public class BreezeCreationWizard extends Wizard implements INewWizard {
 					BreezeCreationWizard.this.diagram = BreezeModel.diagram.part.BreezeDiagramEditorUtil.createDiagram(prj,
 							BreezeCreationWizard.this.fileNamePage.getFileName(), ".breeze", ".breeze_diagram", monitor);
 					prj.getFolder(BreezeGk.SAFETY).create(true, true, monitor);
+					prj.getFolder(BreezeGk.SAFETY).getFolder("FMEA").create(true, true, monitor);
+					prj.getFolder(BreezeGk.SAFETY).getFolder("FTA").create(true, true, monitor);
 					prj.getFolder(BreezeGk.CORRECTNESS).create(true, true, monitor);
+					prj.getFolder(BreezeGk.CORRECTNESS).getFolder("Deadlock").create(true, true, monitor);
 					prj.getFolder(BreezeGk.PERFORMANCE).create(true, true, monitor);
 					prj.getFolder(BreezeGk.RELIABILITY).create(true, true, monitor);
 					prj.getFolder(BreezeGk.PRODUCTION).create(true, true, monitor);
+					prj.getFolder(BreezeGk.SCENARIO).create(true, true, monitor);
 					//prj.getFolder("production\\test").create(true, true, monitor);
-					prj.getFolder(BreezeGk.RELIABILITY+"\\RBD").create(true, true, monitor);
-					prj.getFolder(BreezeGk.RELIABILITY+"\\Original DTMC").create(true, true, monitor);
-					prj.getFolder(BreezeGk.RELIABILITY+"\\Extended DTMC").create(true, true, monitor);
-				
+					prj.getFolder(BreezeGk.RELIABILITY).getFolder("RBD").create(true, true, monitor);
+					prj.getFolder(BreezeGk.RELIABILITY).getFolder("Original DTMC").create(true, true, monitor);
+					prj.getFolder(BreezeGk.RELIABILITY).getFolder("Extended DTMC").create(true, true, monitor);
+					prj.getFolder(BreezeGk.RELIABILITY).getFolder("GSPN").create(true, true, monitor);
+
 				} catch (CoreException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

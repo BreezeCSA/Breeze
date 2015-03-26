@@ -1,6 +1,7 @@
 package com.wxw.breeze.production;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.dom4j.Document;
@@ -11,6 +12,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -18,6 +21,17 @@ import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PlatformUI;
+
+import BreezeModel.Component;
+import BreezeModel.Connector;
+import BreezeModel.Port;
+import BreezeModel.diagram.edit.parts.ComponentEditPart;
+import BreezeModel.diagram.edit.parts.ConnectorEditPart;
+import BreezeModel.diagram.edit.parts.PortEditPart;
+import BreezeModel.diagram.part.BreezeDiagramEditor;
+import BreezeModel.impl.ConnectorImpl;
+import BreezeModel.impl.NodeTemplateImpl;
 
 import com.goku.breeze.ui.console.ConsoleFactory;
 import com.goku.breeze.ui.console.ConsoleUtil;
@@ -31,7 +45,7 @@ public class StyleCheck implements IObjectActionDelegate {
 		// TODO Auto-generated method stub
 		
 		
-		
+		int mark_of_wrong=0;
 		Element root= getRootElement();
 			 int mark=1;
 			 Element arch1 = null,style1 = null;
@@ -71,7 +85,7 @@ public class StyleCheck implements IObjectActionDelegate {
 			}
 		}
 		HighLight_s h=new HighLight_s(" ");
-		//h.exe_cancle();
+		 h.exe_cancle();
 		for(int i=0;i<arc.num_node;i++)
 		{
 			for(int j=0;j<arc.num_node;j++)
@@ -82,7 +96,7 @@ public class StyleCheck implements IObjectActionDelegate {
 				{
 					if(node_type[i].equals("client")&&node_type[j].equals("connector")&&node_type[k].equals("client"))
 					{
-						
+						mark_of_wrong=1;
 						String cmd="The client "+arc.nd[i].name+" and client "+arc.nd[k].name+" should not connected directedly";
 	    				ConsoleUtil.printMessage(ConsoleFactory.getConsole(), cmd+ "\n");
 	    				HighLight_s h1=new HighLight_s(arc.nd[i].id);
@@ -94,7 +108,7 @@ public class StyleCheck implements IObjectActionDelegate {
 					
 					if(node_type[i].equals("client")&&node_type[j].equals("connector")&&node_type[k].equals("server"))
 					{
-						
+						mark_of_wrong=1;
 						String cmd="The port direction between client"+arc.nd[i].name+" and server "+arc.nd[k].name+" is wrong!";
 	    				ConsoleUtil.printMessage(ConsoleFactory.getConsole(), cmd+ "\n");
 	    				HighLight_s h1=new HighLight_s(arc.nd[i].id);
@@ -107,8 +121,137 @@ public class StyleCheck implements IObjectActionDelegate {
 				}
 				}
 			}
-		}
+		} 
 		
+		//here for port matching
+		for(int jj=0;jj<arc.num_node;jj++)
+		 {
+			Object o=PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();		
+			BreezeDiagramEditor diagramEditor = (BreezeDiagramEditor) o;
+			IDiagramGraphicalViewer viewer = diagramEditor.getDiagramGraphicalViewer();
+			if(arc.nd[jj].type==0)
+			{
+				
+			List<ConnectorEditPart> ooo=viewer.findEditPartsForElement(arc.nd[jj].id, ConnectorEditPart.class);
+			Connector connector = (Connector) (((View) ooo.get(0).getModel()).getElement());
+			NodeTemplateImpl nti=(NodeTemplateImpl) connector.getTR();
+			List<Port> pl=nti.getPort();
+			 Iterator<Port> it1 = pl.iterator();
+			 int mark1=0;
+			while(it1.hasNext())
+			{
+				Port trs=it1.next();
+				mark1=0;
+				for(int pit=0;pit<arc.nd[jj].port_num;pit++)
+				{
+					
+					String dir=trs.getDirection().toString();
+					
+				//	System.out.println("StyleCheck matching");
+					
+					 if(arc.nd[jj].pt[pit].name!=null&&arc.nd[jj].pt[pit].name.equals(trs.getName()))
+					 {
+						 if(arc.nd[jj].pt[pit].direction==0)
+						 {
+							 if(dir.equals("in"))
+							 {
+								 mark1=1;
+							 }
+						 }
+						 if(arc.nd[jj].pt[pit].direction==1)
+						 {
+							 if(dir.equals("out"))
+							 {
+								 mark1=1;
+							 }
+						 }
+						 if(arc.nd[jj].pt[pit].direction==2)
+						 {
+							 if(dir.equals("inout"))
+							 {
+								 mark1=1;
+							 }
+						 }
+					 }
+				}
+				if(mark1==0)
+					break;
+			}
+			if(it1.hasNext()||mark1==0)
+			{
+				mark_of_wrong=1;
+				String cmd="The ports of connector \""+arc.nd[jj].name+"\" are not match its template!";
+				ConsoleUtil.printMessage(ConsoleFactory.getConsole(), cmd+ "\n");
+				HighLight_s h1=new HighLight_s(arc.nd[jj].id);
+				h1.exe();
+			}
+			
+			}
+			else
+			{
+				List<ComponentEditPart> ooo=viewer.findEditPartsForElement(arc.nd[jj].id, ComponentEditPart.class);
+				Component component = (Component) (((View) ooo.get(0).getModel()).getElement());
+				NodeTemplateImpl nti=(NodeTemplateImpl) component.getTR();
+				List<Port> pl=nti.getPort();
+				 Iterator<Port> it1 = pl.iterator();
+				 int mark1=0;
+				while(it1.hasNext())
+				{
+					Port trs=it1.next();
+					mark1=0;
+					for(int pit=0;pit<arc.nd[jj].port_num;pit++)
+					{
+						
+						String dir=trs.getDirection().toString();
+						
+					//	System.out.println("StyleCheck matching");
+						
+						 if(arc.nd[jj].pt[pit].name!=null&&arc.nd[jj].pt[pit].name.equals(trs.getName()))
+						 {
+							 if(arc.nd[jj].pt[pit].direction==0)
+							 {
+								 if(dir.equals("in"))
+								 {
+									 mark1=1;
+								 }
+							 }
+							 if(arc.nd[jj].pt[pit].direction==1)
+							 {
+								 if(dir.equals("out"))
+								 {
+									 mark1=1;
+								 }
+							 }
+							 if(arc.nd[jj].pt[pit].direction==2)
+							 {
+								 if(dir.equals("inout"))
+								 {
+									 mark1=1;
+								 }
+							 }
+						 }
+					}
+					if(mark1==0)
+						break;
+				}
+				if(it1.hasNext()||mark1==0)
+				{
+					mark_of_wrong=1;
+					String cmd="The ports of component \""+arc.nd[jj].name+"\" are not match its template!";
+    				ConsoleUtil.printMessage(ConsoleFactory.getConsole(), cmd+ "\n");
+    				HighLight_s h1=new HighLight_s(arc.nd[jj].id);
+    				h1.exe();
+				}
+				}
+			//	NodeTemplateImpl nti=(NodeTemplateImpl) component.getTR();
+		 }
+		if(mark_of_wrong==0)
+		{
+			String cmd="The nodes of the architecture match the style requirements!";
+			ConsoleUtil.printMessage(ConsoleFactory.getConsole(), cmd+ "\n");
+			
+		}
+			
 	}
 
 

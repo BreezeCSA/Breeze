@@ -757,17 +757,23 @@
                menubarPath="additions">
          </action>
          <filter name="extension" value="breeze" />
+         <action
+               class="BreezeModel.diagram.navigator.BreezeNavigatorPopActionGenGSPN"
+               id="Breeze.diagram.ui.navagator.popmenu.safety.genGSPN"
+               label="Generate GSPN file"
+               menubarPath="additions">
+         </action>
+         <action
+               class="BreezeModel.diagram.navigator.BreezeNavigatorPopActionDeadlockCheck"
+               id="Breeze.diagram.ui.navagator.popmenu.correctness.deadlockCheck"
+               label="Deadlock Check"
+               menubarPath="additions">
+         </action>
       </objectContribution>
       <objectContribution
             id="com.goku.breeze.ui.menu.InitModel"
             objectClass="org.eclipse.core.resources.IResource">
 
-         <action
-               class="com.goku.breeze.ui.menu.InitSafetyModel"
-               id="com.goku.breeze.ui.menu.InitSafetyModel"
-               label="Safety"
-               menubarPath="com.goku.breeze.ui.menu.InitGroup/com.goku.breeze.ui.menu.initSafetyGroup/additions">
-         </action>
          <filter name="extension" value="breeze" />
          <menu
                id="com.goku.breeze.ui.menu.InitGroup"
@@ -809,10 +815,16 @@
             </separator>
          </menu>
          <action
-               class="com.goku.breeze.ui.menu.InitCorrectnessModel"
+               class="com.goku.breeze.ui.menu.InitDeadlockModel"
                id="com.goku.breeze.ui.menu.InitCorrectnessModel"
-               label="Correctness"
+               label="Potential Deadlock Check"
                menubarPath="com.goku.breeze.ui.menu.InitGroup/com.goku.breeze.ui.menu.initCorrectnessGroup/additions">
+         </action>
+         <action
+               class="com.goku.breeze.ui.menu.InitScenario"
+               id="com.goku.breeze.ui.menu.InitScenario"
+               label="Add scenario"
+               menubarPath="com.goku.breeze.ui.menu.InitGroup/additions">
          </action>
          <action
                class="com.goku.breeze.ui.menu.InitPerformanceModel"
@@ -838,6 +850,24 @@
                id="com.goku.breeze.ui.menu.InitRBDModel"
                label="RBD"
                menubarPath="com.goku.breeze.ui.menu.InitGroup/com.goku.breeze.ui.menu.initReliabilityGroup/additions">
+         </action>
+         <action
+               class="com.goku.breeze.ui.menu.InitGSPNModel"
+               id="com.goku.breeze.ui.menu.InitGSPNModel"
+               label="GSPN"
+               menubarPath="com.goku.breeze.ui.menu.InitGroup/com.goku.breeze.ui.menu.initReliabilityGroup/additions">
+         </action>
+         <action
+               class="com.goku.breeze.ui.menu.InitFtaModel"
+               id="com.goku.breeze.ui.menu.InitFTAModel"
+               label="FTA"
+               menubarPath="com.goku.breeze.ui.menu.InitGroup/com.goku.breeze.ui.menu.initSafetyGroup/additions">
+         </action>
+         <action
+               class="com.goku.breeze.ui.menu.InitFmeaModel"
+               id="com.goku.breeze.ui.menu.InitFMEAModel"
+               label="FMEA"
+               menubarPath="com.goku.breeze.ui.menu.InitGroup/com.goku.breeze.ui.menu.initSafetyGroup/additions">
          </action> 
       </objectContribution>
       <objectContribution
@@ -1022,6 +1052,22 @@
             id="com.goku.breeze.editor.CorrectnessEditor"
             name="Correctness Editor">
       </editor>
+       <editor
+            class="com.goku.breeze.ui.editor.ScenarioEditor"
+            default="false"
+            extensions="scenario"
+            icon="icons/obj16/scenario.png"
+            id="com.goku.breeze.editor.ScenarioEditor"
+            name="Scenario Editor">
+      </editor>
+      <editor
+            class="com.goku.breeze.ui.editor.DeadlockEditor"
+            default="false"
+            extensions="deadlock"
+            icon="icons/obj16/correctnessFileIcon.png"
+            id="com.goku.breeze.editor.DeadlockEditor"
+            name="Deadlock Editor">
+      </editor>
    </extension>
    <extension
          point="org.eclipse.ui.editors">
@@ -1174,6 +1220,18 @@
                 name="preferenceCustomization"
                 value="plugin_customization.ini">
           </property>
+          <property
+                name="startupForegroundColor"
+                value="00FF40">
+          </property>
+          <property
+                name="startupMessageRect"
+                value="7,252,445,20">
+          </property>
+          <property
+                name="startupProgressRect"
+                value="5,275,445,15">
+          </property>
        </product>
     </extension>
     <extension
@@ -1182,10 +1240,6 @@
              class="org.sjtu.radlab.breeze.diagram.splashHandlers.ExtensibleSplashHandler"
              id="org.sjtu.radlab.breeze.diagram.splashHandlers.extensible">
        </splashHandler>
-       <splashHandlerProductBinding
-             productId="org.sjtu.radlab.breeze.diagram.Breeze"
-             splashId="org.sjtu.radlab.breeze.diagram.splashHandlers.extensible">
-       </splashHandlerProductBinding>
     </extension>
     <extension
           point="org.sjtu.radlab.breeze.diagram.splashExtension">
@@ -1223,11 +1277,31 @@
              name="Breeze">
           <property
                 name="windowImages"
-                value="icons/icons/breeze_ico_16.png,icons/icons/breeze_ico_32.png,icons/icons/breeze_ico_48.png,icons/icons/breeze_ico_64.png,icons/icons/breeze_ico_128.png">
+                value="icons/icons/breeze_ico_16.png,icons/icons/breeze_ico_32.png,breeze48.png,icons/icons/breeze_ico_64.png,icons/icons/breeze_ico_128.png">
           </property>
           <property
                 name="appName"
                 value="Breeze">
+          </property>
+          <property
+                name="aboutImage"
+                value="breeze48.png">
+          </property>
+          <property
+                name="startupForegroundColor"
+                value="00FF40">
+          </property>
+          <property
+                name="startupMessageRect"
+                value="7,252,445,20">
+          </property>
+          <property
+                name="startupProgressRect"
+                value="5,275,445,15">
+          </property>
+          <property
+                name="preferenceCustomization"
+                value="plugin_customization.ini">
           </property>
        </product>
     </extension>

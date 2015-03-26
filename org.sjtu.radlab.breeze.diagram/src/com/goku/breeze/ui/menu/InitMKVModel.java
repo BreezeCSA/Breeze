@@ -58,7 +58,7 @@ public class InitMKVModel implements IObjectActionDelegate {
 		//			}
 		//		}
 		System.out.println("mkvActive");
-		String safetyModelFile = InitModelUtil.copy(this.selectedPath, BreezeGk.RELIABILITY);
+		String safetyModelFile = InitModelUtil.copy(this.selectedPath, BreezeGk.RELIABILITY + "/Original DTMC");
 		if (safetyModelFile == null)
 			return;
 		String safetyFileString = safetyModelFile.substring(0, safetyModelFile.length() - "breeze".length())

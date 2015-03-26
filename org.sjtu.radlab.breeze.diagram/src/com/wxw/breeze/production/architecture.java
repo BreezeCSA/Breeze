@@ -134,10 +134,13 @@ public class architecture {
 	        			else
 	        				nd[node_list].pt[tras].direction=1;
         			else
-        				nd[node_list].pt[tras].direction=0;
-        		 
-        			tras++;	
+        				nd[node_list].pt[tras].direction=0;        		 
         			
+        			if(port_trs.attributeValue("name")!=null)
+        			{
+        				nd[node_list].pt[tras].name=port_trs.attributeValue("name");
+        			}
+        			tras++;	
         		}
         		nd[node_list].port_num=tras;
         		node_list++; 

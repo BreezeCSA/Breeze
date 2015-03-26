@@ -16,10 +16,26 @@ import java.util.Map;
 
 
 
+
+
+
+
+
 import org.eclipse.core.commands.Command;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.util.TransactionUtil;
+import org.eclipse.emf.workspace.AbstractEMFOperation;
 import org.eclipse.gef.GraphicalViewer;  
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint; 
+import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
@@ -28,6 +44,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PlatformUI;
 
 import BreezeModel.diagram.edit.parts.ArchContentCompartmentEditPart;
@@ -37,6 +54,7 @@ import BreezeModel.diagram.edit.parts.ComponentEditPart;
 import BreezeModel.diagram.edit.parts.ConnectorEditPart;
 import BreezeModel.diagram.part.BreezeDiagramEditor;
 import BreezeModel.diagram.part.BreezeDiagramEditorPlugin;
+import BreezeModel.impl.ComponentImpl;
 
 
 
@@ -48,8 +66,8 @@ public class NodeAdd_s {
 		super();
 		this.node_from = node_from;
 	}
-	public void drawLink_com(ComponentEditPart sourceModuleEditPart) throws ExecutionException {
-
+	public void drawLink_com(final ComponentEditPart sourceModuleEditPart) throws ExecutionException {
+	//public void drawLink_com() throws ExecutionException {
         IElementType type = BreezeModel.diagram.providers.BreezeElementTypes.Component_3005 ; // 连接线类型
         CreateElementRequest createConnectionRequest  = new CreateElementRequest(type);
         Object o=PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();		
@@ -60,8 +78,42 @@ public class NodeAdd_s {
            org.eclipse.gef.commands.Command createCommand = ace.getCommand(createViewRequest); 
            ace.getDiagramEditDomain().getDiagramCommandStack().execute(createCommand );
            ace=(ArchContentCompartmentEditPart) aep.getChildren().get(1);
-           ComponentEditPart last=(ComponentEditPart) ace.getChildren().get(ace.getChildren().size());
-           Object oo=((View)((ComponentEditPart) (ace.getChildren().get(ace.getChildren().size()))).getModel()).getElement();
+           ComponentEditPart last=(ComponentEditPart) ace.getChildren().get(ace.getChildren().size()-1);
+           final Object oo=((View)((ComponentEditPart) (ace.getChildren().get(ace.getChildren().size()-1))).getModel()).getElement();
+           //(ComponentImpl)oo
+       //  ((ComponentImpl)oo).setTR(((ComponentImpl)(((View)sourceModuleEditPart.getModel()).getElement())).getTR());
+          
+          
+           IWorkbenchPart part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
+           TransactionalEditingDomain editingDomain = null;
+           EditingDomain domain = null;
+           if (part != null) {
+	        	IEditingDomainProvider edProvider = (IEditingDomainProvider) part
+	        	.getAdapter(IEditingDomainProvider.class);
+
+	        	if (edProvider != null) {
+	        		 domain = edProvider.getEditingDomain();
+
+	        		if (domain instanceof TransactionalEditingDomain) {
+	        			editingDomain = (TransactionalEditingDomain) domain;
+	        		}
+	        	}
+	        }        
+           editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+               @Override
+               protected void doExecute() {
+            	   ((ComponentImpl)oo).eSet(4, ((ComponentImpl)(((View)sourceModuleEditPart.getModel()).getElement())).getTR());
+            	   //Do anything
+               }
+           });
+           
+           
+         //  ((ComponentImpl)oo).eSet(4, ((ComponentImpl)(((View)sourceModuleEditPart.getModel()).getElement())).getTR());
+           System.out.println("hah");
+           
+           
+           
+           
 		
 		 
  }
@@ -111,6 +163,7 @@ public class NodeAdd_s {
 			List<ComponentEditPart> ooo=viewer.findEditPartsForElement(node_from.id, ComponentEditPart.class);
 	          try {
 				drawLink_com(ooo.get(0));
+	        	//  drawLink_com();
 			} catch (ExecutionException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

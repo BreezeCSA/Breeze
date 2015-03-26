@@ -35,6 +35,7 @@ public abstract class BreezeObject implements Serializable {
 	public static final String TYPE_STATE = "state";
 	public static final String TYPE_TRANSITION = "transition";
 	public static final String TYPE_TRIGGER = "trigger";
+	public static final String ATTR_TAG = "tag";
 
 	private final Map<String, Object> properties = new HashMap<String, Object>();
 
