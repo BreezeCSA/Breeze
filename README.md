@@ -102,11 +102,17 @@ Slides describing the theoretical foundation, i.e., Breeze Graph Grammar and Bre
 
 Papers
 
-Our papers on Breeze Graph Grammar and Breeze/ADL are available at: 
+Our papers on Breeze Graph Grammar, Breeze/ADL and their analysis are available at: 
 
 1). http://www.computer.org/csdl/proceedings/compsac/2013/4987/00/4986a800-abs.html
 
 2). http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6603687 
+
+3). http://onlinelibrary.wiley.com/doi/10.1002/spe.2271/abstract
+
+4). http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=6899225
+
+5). http://dl.acm.org/citation.cfm?id=2677836
 
 
 
